@@ -22,7 +22,6 @@ Dilengkapi dengan habit tracker harian yang ringan (check-in 1-ketukan < 3 detik
 - Pastikan **Node.js** (v18+ / v20+ / v24+) dan **npm** sudah terinstal.
 
 ### 2. Menjalankan Server Utama (Backend + Frontend)
-Di folder proyek (`pabwe_revisi`):
 
 ```bash
 # Masuk ke folder backend
