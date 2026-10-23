@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Sparkles, ArrowLeft, Lightbulb, Check } from 'lucide-react';
+import { ArrowLeft, Lightbulb } from 'lucide-react';
 import { api } from '../api/client.js';
 
 const EMOJI_OPTIONS = [

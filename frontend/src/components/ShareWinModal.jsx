@@ -3,8 +3,6 @@ import { X, Send, Sparkles } from 'lucide-react';
 import { api } from '../api/client.js';
 
 export default function ShareWinModal({ isOpen, onClose, habit, streak, onPostCreated }) {
-  if (!isOpen) return null;
-
   const defaultText = habit
     ? `Hari ini berhasil ${habit.title.toLowerCase()}, streak sudah ${streak || 1} hari! 🎉`
     : 'Hari ini berhasil menyelesaikan kebiasaan kecilku! 🎉';
@@ -13,6 +11,16 @@ export default function ShareWinModal({ isOpen, onClose, habit, streak, onPostCr
   const [postType, setPostType] = useState('daily_win');
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
+
+  React.useEffect(() => {
+    if (isOpen) {
+      setBody(defaultText);
+      setPostType('daily_win');
+      setError(null);
+    }
+  }, [isOpen, defaultText]);
+
+  if (!isOpen) return null;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

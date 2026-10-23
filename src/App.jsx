@@ -14,7 +14,7 @@ import CommunityPage from './pages/CommunityPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import SettingsPage from './pages/SettingsPage.jsx';
 
-function ProtectedRoute({ children }) {
+export function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
 
   if (loading) {
@@ -32,7 +32,7 @@ function ProtectedRoute({ children }) {
   return <Layout>{children}</Layout>;
 }
 
-function PublicOnlyRoute({ children }) {
+export function PublicOnlyRoute({ children }) {
   const { user, loading } = useAuth();
 
   if (loading) {

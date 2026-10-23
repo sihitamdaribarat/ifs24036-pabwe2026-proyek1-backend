@@ -6,10 +6,6 @@ import {
   Flame,
   PlusCircle,
   Sparkles,
-  RotateCcw,
-  Clock,
-  ArrowRight,
-  Smile,
 } from 'lucide-react';
 import { api } from '../api/client.js';
 import { useAuth } from '../context/AuthContext.jsx';
@@ -157,6 +153,12 @@ export default function TodayPage() {
           {formatIndonesianDate(data.date)}
         </p>
       </div>
+
+      {error && (
+        <div className="p-3 bg-red-50 border border-red-200 text-red-600 rounded-xl text-xs">
+          {error}
+        </div>
+      )}
 
       {/* Daily Progress Card */}
       <div className="bg-gradient-to-br from-emerald-600 via-teal-600 to-emerald-700 text-white rounded-3xl p-6 shadow-xl shadow-emerald-700/20 relative overflow-hidden">

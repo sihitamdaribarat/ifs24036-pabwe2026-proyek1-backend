@@ -5,7 +5,6 @@ import {
   Flame,
   CheckCircle2,
   Users,
-  ShieldCheck,
   ArrowRight,
   Heart,
 } from 'lucide-react';

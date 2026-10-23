@@ -3,9 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   Flame,
   PlusCircle,
-  Archive,
   RotateCcw,
-  Sparkles,
   ChevronRight,
   Award,
 } from 'lucide-react';
@@ -66,6 +64,12 @@ export default function HabitsPage() {
           </button>
         )}
       </div>
+
+      {error && (
+        <div className="p-3 bg-red-50 border border-red-200 text-red-600 rounded-xl text-xs">
+          {error}
+        </div>
+      )}
 
       {/* Filter Tabs & Limit Indicator */}
       <div className="flex items-center justify-between border-b border-slate-200 pb-2">

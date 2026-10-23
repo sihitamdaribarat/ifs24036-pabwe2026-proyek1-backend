@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Flame, Calendar, Award, Sparkles } from 'lucide-react';
+import { ArrowLeft, Flame, Calendar } from 'lucide-react';
 import { api } from '../api/client.js';
 
 export default function ProfilePage() {

@@ -9,8 +9,6 @@ import {
   Edit2,
   Archive,
   Save,
-  X,
-  Plus,
 } from 'lucide-react';
 import { api } from '../api/client.js';
 
