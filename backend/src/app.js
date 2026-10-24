@@ -66,13 +66,15 @@ app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Mount API v1
+// Mount API v1 & aliases
 const apiV1 = express.Router();
 apiV1.use(authRoutes);
 apiV1.use(habitRoutes);
 apiV1.use(postRoutes);
 
 app.use('/api/v1', apiV1);
+app.use('/api', apiV1);
+app.use(authRoutes);
 
 // Serve frontend static files if available
 if (fs.existsSync(distPath)) {

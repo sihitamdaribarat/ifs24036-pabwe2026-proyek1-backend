@@ -62,9 +62,8 @@ export async function request(path, options = {}) {
   }
 
   let data;
-  const rawText = await response.text();
   try {
-    data = rawText ? JSON.parse(rawText) : {};
+    data = await response.json();
   } catch {
     const error = new Error(
       response.status >= 500

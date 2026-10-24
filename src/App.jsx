@@ -66,7 +66,23 @@ export default function App() {
             }
           />
           <Route
+            path="/auth/login"
+            element={
+              <PublicOnlyRoute>
+                <LoginPage />
+              </PublicOnlyRoute>
+            }
+          />
+          <Route
             path="/register"
+            element={
+              <PublicOnlyRoute>
+                <RegisterPage />
+              </PublicOnlyRoute>
+            }
+          />
+          <Route
+            path="/auth/register"
             element={
               <PublicOnlyRoute>
                 <RegisterPage />
