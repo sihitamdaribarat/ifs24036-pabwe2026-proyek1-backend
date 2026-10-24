@@ -6,11 +6,7 @@
   "framework": "vite",
   "functions": {
     "api/index.js": {
-      "includeFiles": [
-        "backend/**",
-        "database.sqlite",
-        "node_modules/better-sqlite3/**"
-      ]
+      "includeFiles": "backend/**"
     }
   },
   "rewrites": [
