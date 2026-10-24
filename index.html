@@ -7,7 +7,10 @@
     <meta name="description" content="LangkahKecil adalah aplikasi web pencatat kebiasaan mikro (micro-habit) berdasarkan prinsip Atomic Habits. Catat aksi kecil harianmu dalam 3 detik dan dapatkan dukungan hangat komunitas." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Load Google Fonts without blocking first render -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"></noscript>
     <style>
       body {
         font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;

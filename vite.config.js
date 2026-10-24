@@ -8,6 +8,9 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  build: {
+    sourcemap: true,
+  },
   test: {
     globals: true,
     environment: 'jsdom',

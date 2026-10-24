@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext.jsx';
 import Layout from './components/Layout.jsx';
@@ -6,13 +6,23 @@ import Layout from './components/Layout.jsx';
 import LandingPage from './pages/LandingPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
-import TodayPage from './pages/TodayPage.jsx';
-import HabitsPage from './pages/HabitsPage.jsx';
-import HabitNewPage from './pages/HabitNewPage.jsx';
-import HabitDetailPage from './pages/HabitDetailPage.jsx';
-import CommunityPage from './pages/CommunityPage.jsx';
-import ProfilePage from './pages/ProfilePage.jsx';
-import SettingsPage from './pages/SettingsPage.jsx';
+
+// Halaman yang butuh login dimuat terpisah agar bundle awal (landing/login) lebih kecil
+const TodayPage = lazy(() => import('./pages/TodayPage.jsx'));
+const HabitsPage = lazy(() => import('./pages/HabitsPage.jsx'));
+const HabitNewPage = lazy(() => import('./pages/HabitNewPage.jsx'));
+const HabitDetailPage = lazy(() => import('./pages/HabitDetailPage.jsx'));
+const CommunityPage = lazy(() => import('./pages/CommunityPage.jsx'));
+const ProfilePage = lazy(() => import('./pages/ProfilePage.jsx'));
+const SettingsPage = lazy(() => import('./pages/SettingsPage.jsx'));
+
+function PageSpinner() {
+  return (
+    <div className="flex items-center justify-center py-16" role="status" aria-label="Memuat halaman">
+      <div className="w-8 h-8 border-3 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  );
+}
 
 export function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
@@ -29,7 +39,11 @@ export function ProtectedRoute({ children }) {
     return <Navigate to="/login" replace />;
   }
 
-  return <Layout>{children}</Layout>;
+  return (
+    <Layout>
+      <Suspense fallback={<PageSpinner />}>{children}</Suspense>
+    </Layout>
+  );
 }
 
 export function PublicOnlyRoute({ children }) {

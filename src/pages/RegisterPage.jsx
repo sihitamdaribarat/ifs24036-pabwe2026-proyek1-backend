@@ -50,7 +50,7 @@ export default function RegisterPage() {
             LangkahKecil
           </span>
         </Link>
-        <h2 className="text-xl font-bold text-slate-900">Mulai Langkah Pertamamu</h2>
+        <h1 className="text-xl font-bold text-slate-900">Mulai Langkah Pertamamu</h1>
         <p className="mt-1 text-xs text-slate-600">
           Buat akun gratis dan rasakan kekuatan aksi mikro
         </p>

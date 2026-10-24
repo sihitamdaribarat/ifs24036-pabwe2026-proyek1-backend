@@ -114,9 +114,9 @@ export default function HabitsPage() {
           <div className="w-12 h-12 bg-slate-100 text-slate-600 rounded-2xl flex items-center justify-center mx-auto text-xl">
             {status === 'active' ? '🌱' : '📁'}
           </div>
-          <h3 className="font-bold text-slate-800 text-sm">
+          <h2 className="font-bold text-slate-800 text-sm">
             {status === 'active' ? 'Belum Ada Kebiasaan Aktif' : 'Tidak Ada Kebiasaan Arsip'}
-          </h3>
+          </h2>
           <p className="text-xs text-slate-600 max-w-xs mx-auto">
             {status === 'active'
               ? 'Mulai perjalananmu dengan membuat aksi mikro yang sangat ringan.'
@@ -148,7 +148,7 @@ export default function HabitsPage() {
                   {habit.emoji}
                 </div>
                 <div className="truncate">
-                  <h3 className="text-sm font-bold text-slate-800 truncate">{habit.title}</h3>
+                  <h2 className="text-sm font-bold text-slate-800 truncate">{habit.title}</h2>
                   {habit.anchor_cue && (
                     <p className="text-[11px] text-slate-600 truncate flex items-center gap-1 mt-0.5">
                       <span>⚓</span>

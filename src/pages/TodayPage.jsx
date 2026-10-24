@@ -255,13 +255,13 @@ export default function TodayPage() {
                       {habit.emoji}
                     </div>
                     <div className="truncate">
-                      <h4
+                      <h3
                         className={`text-sm font-bold truncate transition-colors ${
                           isDone ? 'text-emerald-950 line-through opacity-75' : 'text-slate-800'
                         }`}
                       >
                         {habit.title}
-                      </h4>
+                      </h3>
                       {habit.anchor_cue ? (
                         <p className="text-[11px] text-slate-600 truncate flex items-center gap-1 mt-0.5">
                           <span>⚓</span>

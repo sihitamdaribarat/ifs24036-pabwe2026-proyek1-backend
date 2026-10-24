@@ -54,9 +54,9 @@ export default function Layout({ children }) {
             <Sparkles className="w-5 h-5 text-emerald-100" />
           </div>
           <div>
-            <h1 className="font-extrabold text-xl tracking-tight bg-gradient-to-r from-emerald-700 to-teal-600 bg-clip-text text-transparent">
+            <p className="font-extrabold text-xl tracking-tight bg-gradient-to-r from-emerald-700 to-teal-600 bg-clip-text text-transparent">
               LangkahKecil
-            </h1>
+            </p>
             <p className="text-[11px] font-medium text-slate-600 -mt-0.5">Micro-Habit & Accountability</p>
           </div>
         </div>

@@ -41,7 +41,7 @@ export default function LoginPage() {
             LangkahKecil
           </span>
         </Link>
-        <h2 className="text-xl font-bold text-slate-900">Selamat Datang Kembali</h2>
+        <h1 className="text-xl font-bold text-slate-900">Selamat Datang Kembali</h1>
         <p className="mt-1 text-xs text-slate-600">
           Masuk untuk mencatat kebiasaan harianmu
         </p>
