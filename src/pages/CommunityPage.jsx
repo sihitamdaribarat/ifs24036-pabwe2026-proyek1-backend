@@ -265,6 +265,7 @@ export default function CommunityPage() {
           rows={3}
           maxLength={500}
           value={body}
+          aria-label="Ceritakan aksi kecilmu hari ini"
           onChange={(e) => setBody(e.target.value)}
           placeholder="Ceritakan aksi kecilmu hari ini, apa yang berhasil kamu lakukan?"
           className="w-full text-sm p-3.5 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none text-slate-800"
@@ -301,6 +302,8 @@ export default function CommunityPage() {
             {/* Habit selector */}
             {userHabits.length > 0 && (
               <select
+                id="select-post-habit"
+                aria-label="Kaitkan kebiasaan (opsional)"
                 value={selectedHabitId}
                 onChange={(e) => setSelectedHabitId(e.target.value)}
                 className="text-xs py-1.5 px-3 rounded-xl border border-slate-200 bg-white text-slate-700 focus:outline-none"
@@ -316,11 +319,11 @@ export default function CommunityPage() {
           </div>
 
           <div className="flex items-center space-x-3 ml-auto">
-            <span className="text-[11px] text-slate-400">{body.length}/500</span>
+            <span className="text-[11px] text-slate-600 font-medium">{body.length}/500</span>
             <button
               type="submit"
               disabled={submitting || !body.trim()}
-              className="flex items-center space-x-1.5 px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white font-semibold text-xs shadow-md shadow-emerald-600/20 transition-all active:scale-95"
+              className="flex items-center space-x-1.5 px-5 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 disabled:opacity-50 text-white font-semibold text-xs shadow-md shadow-emerald-700/20 transition-all active:scale-95"
             >
               <Send className="w-3.5 h-3.5" />
               <span>{submitting ? 'Mengirim...' : 'Kirim'}</span>
@@ -426,6 +429,7 @@ export default function CommunityPage() {
                       <button
                         onClick={() => handleDeletePost(post.id)}
                         title="Hapus postingan"
+                        aria-label="Hapus postingan"
                         className="p-1 text-slate-400 hover:text-rose-600 transition-colors"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
@@ -503,6 +507,7 @@ export default function CommunityPage() {
                   {/* Comment Toggle */}
                   <button
                     onClick={() => toggleComments(post.id)}
+                    aria-label={`Lihat ${post.comment_count} komentar`}
                     className="flex items-center space-x-1.5 text-slate-500 hover:text-slate-800 transition-colors"
                   >
                     <MessageCircle className="w-4 h-4" />
@@ -514,13 +519,13 @@ export default function CommunityPage() {
                 {commentsInfo.open && (
                   <div className="pt-3 border-t border-slate-100 space-y-3">
                     {commentsInfo.loading ? (
-                      <p className="text-xs text-slate-400">Memuat komentar...</p>
+                      <p className="text-xs text-slate-500">Memuat komentar...</p>
                     ) : (
                       <>
                         {/* List */}
                         <div className="space-y-2">
                           {commentsInfo.list.length === 0 ? (
-                            <p className="text-[11px] text-slate-400">Belum ada komentar. Beri semangat pertama!</p>
+                            <p className="text-[11px] text-slate-500">Belum ada komentar. Beri semangat pertama!</p>
                           ) : (
                             commentsInfo.list.map((c) => {
                               const canDelete = c.author?.id === user?.id || isAuthor;
@@ -537,7 +542,7 @@ export default function CommunityPage() {
                                       >
                                         {c.author?.display_name}
                                       </Link>
-                                      <span className="text-[10px] text-slate-400">
+                                      <span className="text-[10px] text-slate-500">
                                         {formatRelativeTime(c.created_at)}
                                       </span>
                                     </div>
@@ -546,6 +551,8 @@ export default function CommunityPage() {
                                   {canDelete && (
                                     <button
                                       onClick={() => handleDeleteComment(post.id, c.id)}
+                                      title="Hapus komentar"
+                                      aria-label="Hapus komentar"
                                       className="text-slate-400 hover:text-rose-600 p-1"
                                     >
                                       <Trash2 className="w-3 h-3" />
@@ -565,6 +572,7 @@ export default function CommunityPage() {
                           <input
                             type="text"
                             maxLength={300}
+                            aria-label="Tulis pesan penyemangat"
                             placeholder="Tulis pesan penyemangat..."
                             value={commentsInfo.input || ''}
                             onChange={(e) =>
@@ -578,7 +586,7 @@ export default function CommunityPage() {
                           <button
                             type="submit"
                             disabled={!commentsInfo.input?.trim()}
-                            className="px-3 py-2 bg-emerald-600 text-white rounded-xl text-xs font-semibold hover:bg-emerald-700 disabled:opacity-50"
+                            className="px-3 py-2 bg-emerald-700 text-white rounded-xl text-xs font-semibold hover:bg-emerald-800 disabled:opacity-50"
                           >
                             Kirim
                           </button>

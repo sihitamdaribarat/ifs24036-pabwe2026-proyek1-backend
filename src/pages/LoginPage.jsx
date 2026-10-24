@@ -90,7 +90,9 @@ export default function LoginPage() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600"
+                  aria-label={showPassword ? 'Sembunyikan password' : 'Tampilkan password'}
+                  title={showPassword ? 'Sembunyikan password' : 'Tampilkan password'}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-500 hover:text-slate-700"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -101,16 +103,16 @@ export default function LoginPage() {
               id="btn-submit"
               type="submit"
               disabled={loading}
-              className="w-full mt-2 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white font-semibold text-sm shadow-md shadow-emerald-600/20 active:scale-[0.98] transition-all flex items-center justify-center space-x-2"
+              className="w-full mt-2 py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 disabled:opacity-50 text-white font-semibold text-sm shadow-md shadow-emerald-700/20 active:scale-[0.98] transition-all flex items-center justify-center space-x-2"
             >
               <span>{loading ? 'Masuk...' : 'Masuk ke Akun'}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </form>
 
-          <div className="mt-6 text-center text-xs text-slate-500">
+          <div className="mt-6 text-center text-xs text-slate-600">
             Belum punya akun?{' '}
-            <Link to="/register" className="font-semibold text-emerald-600 hover:text-emerald-700">
+            <Link to="/register" className="font-semibold text-emerald-700 hover:text-emerald-800 underline">
               Daftar Sekarang
             </Link>
           </div>

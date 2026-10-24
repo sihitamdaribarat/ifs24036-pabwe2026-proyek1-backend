@@ -63,8 +63,10 @@ export default function HabitNewPage() {
       {/* Header */}
       <div className="flex items-center space-x-3">
         <button
+          type="button"
           onClick={() => navigate(-1)}
-          className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+          aria-label="Kembali"
+          className="p-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />
         </button>
@@ -72,7 +74,7 @@ export default function HabitNewPage() {
           <h1 className="text-xl font-extrabold text-slate-900 tracking-tight">
             Buat Kebiasaan Mikro
           </h1>
-          <p className="text-xs text-slate-500">Mulai dari langkah terkecil yang mustahil untuk gagal</p>
+          <p className="text-xs text-slate-600">Mulai dari langkah terkecil yang mustahil untuk gagal</p>
         </div>
       </div>
 
@@ -113,6 +115,7 @@ export default function HabitNewPage() {
                 <button
                   key={c}
                   type="button"
+                  aria-label={`Pilih warna ${c}`}
                   onClick={() => setColor(c)}
                   className={`w-7 h-7 rounded-full transition-transform ${
                     color === c ? 'scale-110 ring-2 ring-offset-2 ring-slate-400' : 'hover:scale-105'
@@ -129,6 +132,7 @@ export default function HabitNewPage() {
               <button
                 key={e}
                 type="button"
+                aria-label={`Pilih ikon ${e}`}
                 onClick={() => setEmoji(e)}
                 className={`w-9 h-9 rounded-xl text-lg flex items-center justify-center transition-all ${
                   emoji === e ? 'bg-slate-200 scale-105 shadow-xs' : 'hover:bg-slate-100'
@@ -142,10 +146,11 @@ export default function HabitNewPage() {
 
         {/* Title */}
         <div>
-          <label className="block text-xs font-semibold text-slate-700 mb-1">
+          <label htmlFor="new-habit-title" className="block text-xs font-semibold text-slate-700 mb-1">
             Aksi Mikro (Wajib)
           </label>
           <input
+            id="new-habit-title"
             type="text"
             required
             maxLength={80}
@@ -154,15 +159,16 @@ export default function HabitNewPage() {
             placeholder="Buat sekecil mungkin: contoh: Baca 1 halaman buku"
             className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-slate-800"
           />
-          <p className="text-[11px] text-slate-400 mt-1">1–80 karakter</p>
+          <p className="text-[11px] text-slate-600 font-medium mt-1">1–80 karakter</p>
         </div>
 
         {/* Anchor Cue */}
         <div>
-          <label className="block text-xs font-semibold text-slate-700 mb-1">
+          <label htmlFor="new-habit-anchor" className="block text-xs font-semibold text-slate-700 mb-1">
             Pemicu Rutin / Anchor Cue (Opsional)
           </label>
           <input
+            id="new-habit-anchor"
             type="text"
             maxLength={120}
             value={anchorCue}
@@ -170,17 +176,18 @@ export default function HabitNewPage() {
             placeholder='Contoh: "Setelah menyikat gigi malam" atau "Setelah menyeduh kopi pagi"'
             className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-slate-800"
           />
-          <p className="text-[11px] text-slate-400 mt-1">
+          <p className="text-[11px] text-slate-600 font-medium mt-1">
             Kaitkan dengan rutinitas yang sudah Anda lakukan setiap hari.
           </p>
         </div>
 
         {/* Description */}
         <div>
-          <label className="block text-xs font-semibold text-slate-700 mb-1">
+          <label htmlFor="new-habit-desc" className="block text-xs font-semibold text-slate-700 mb-1">
             Catatan Tambahan (Opsional)
           </label>
           <textarea
+            id="new-habit-desc"
             rows={2}
             maxLength={200}
             value={description}
@@ -195,7 +202,7 @@ export default function HabitNewPage() {
           <button
             type="submit"
             disabled={loading || !title.trim()}
-            className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white font-semibold text-sm shadow-md shadow-emerald-600/20 active:scale-[0.98] transition-all flex items-center justify-center space-x-2"
+            className="w-full py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 disabled:opacity-50 text-white font-semibold text-sm shadow-md shadow-emerald-700/20 active:scale-[0.98] transition-all flex items-center justify-center space-x-2"
           >
             <span>{loading ? 'Menyimpan...' : 'Simpan Kebiasaan'}</span>
           </button>

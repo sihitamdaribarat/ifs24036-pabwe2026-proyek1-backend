@@ -98,7 +98,7 @@ export default function RegisterPage() {
                 placeholder="contoh: dinda_baca"
                 className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-slate-800 lowercase"
               />
-              <p className="text-[10px] text-slate-400 mt-1">3–20 karakter (huruf kecil, angka, _)</p>
+              <p className="text-[10px] text-slate-600 font-medium mt-1">3–20 karakter (huruf kecil, angka, _)</p>
             </div>
 
             <div>
@@ -137,28 +137,30 @@ export default function RegisterPage() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600"
+                  aria-label={showPassword ? 'Sembunyikan password' : 'Tampilkan password'}
+                  title={showPassword ? 'Sembunyikan password' : 'Tampilkan password'}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-500 hover:text-slate-700"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
-              <p className="text-[10px] text-slate-400 mt-1">Minimal 8 karakter, wajib ada huruf dan angka</p>
+              <p className="text-[10px] text-slate-600 font-medium mt-1">Minimal 8 karakter, wajib ada huruf dan angka</p>
             </div>
 
             <button
               id="btn-submit"
               type="submit"
               disabled={loading}
-              className="w-full mt-4 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white font-semibold text-sm shadow-md shadow-emerald-600/20 active:scale-[0.98] transition-all flex items-center justify-center space-x-2"
+              className="w-full mt-4 py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 disabled:opacity-50 text-white font-semibold text-sm shadow-md shadow-emerald-700/20 active:scale-[0.98] transition-all flex items-center justify-center space-x-2"
             >
               <span>{loading ? 'Mendaftar...' : 'Daftar Sekarang'}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </form>
 
-          <div className="mt-6 text-center text-xs text-slate-500">
+          <div className="mt-6 text-center text-xs text-slate-600">
             Sudah punya akun?{' '}
-            <Link to="/login" className="font-semibold text-emerald-600 hover:text-emerald-700">
+            <Link to="/login" className="font-semibold text-emerald-700 hover:text-emerald-800 underline">
               Masuk
             </Link>
           </div>

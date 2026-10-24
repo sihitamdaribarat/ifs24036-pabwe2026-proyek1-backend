@@ -89,10 +89,12 @@ export default function SettingsPage() {
 
         {/* Display Name */}
         <div>
-          <label className="block text-xs font-semibold text-slate-700 mb-1">
+          <label htmlFor="settings-display-name" className="block text-xs font-semibold text-slate-700 mb-1">
             Nama Tampilan
           </label>
           <input
+            id="settings-display-name"
+            name="display_name"
             type="text"
             required
             maxLength={50}
@@ -104,10 +106,12 @@ export default function SettingsPage() {
 
         {/* Bio */}
         <div>
-          <label className="block text-xs font-semibold text-slate-700 mb-1">
+          <label htmlFor="settings-bio" className="block text-xs font-semibold text-slate-700 mb-1">
             Bio (Maksimal 160 Karakter)
           </label>
           <textarea
+            id="settings-bio"
+            name="bio"
             rows={3}
             maxLength={160}
             value={bio}
@@ -115,16 +119,19 @@ export default function SettingsPage() {
             placeholder="Tuliskan tujuan atau moto kecilmu..."
             className="w-full text-sm p-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none text-slate-800"
           />
-          <p className="text-[11px] text-slate-400 mt-1">{bio.length} / 160 karakter</p>
+          <p className="text-[11px] text-slate-600 mt-1">{bio.length} / 160 karakter</p>
         </div>
 
         {/* Timezone */}
         <div>
-          <label className="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1">
+          <label htmlFor="settings-timezone" className="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1">
             <Globe className="w-3.5 h-3.5 text-slate-400" />
             <span>Zona Waktu (Menentukan pergantian "Hari Ini")</span>
           </label>
           <select
+            id="settings-timezone"
+            name="timezone"
+            aria-label="Zona Waktu"
             value={timezone}
             onChange={(e) => setTimezone(e.target.value)}
             className="w-full text-sm px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-500"
@@ -135,7 +142,7 @@ export default function SettingsPage() {
               </option>
             ))}
           </select>
-          <p className="text-[11px] text-slate-400 mt-1">
+          <p className="text-[11px] text-slate-600 mt-1">
             Streak harian dan penanda check-in dihitung berdasarkan zona waktu ini.
           </p>
         </div>
@@ -144,7 +151,7 @@ export default function SettingsPage() {
           <button
             type="submit"
             disabled={loading}
-            className="flex items-center justify-center space-x-2 w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white font-semibold text-sm shadow-md shadow-emerald-600/20 active:scale-[0.98] transition-all"
+            className="flex items-center justify-center space-x-2 w-full py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 disabled:opacity-50 text-white font-semibold text-sm shadow-md shadow-emerald-700/20 active:scale-[0.98] transition-all"
           >
             <Save className="w-4 h-4" />
             <span>{loading ? 'Menyimpan...' : 'Simpan Pengaturan'}</span>
@@ -156,7 +163,7 @@ export default function SettingsPage() {
       <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs flex items-center justify-between">
         <div>
           <h2 className="text-sm font-bold text-slate-800">Sesi Akun</h2>
-          <p className="text-xs text-slate-400">Keluar dari akun di perangkat ini</p>
+          <p className="text-xs text-slate-600">Keluar dari akun di perangkat ini</p>
         </div>
         <button
           onClick={handleLogout}

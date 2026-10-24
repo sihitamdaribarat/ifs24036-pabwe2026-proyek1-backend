@@ -57,14 +57,14 @@ export default function Layout({ children }) {
             <h1 className="font-extrabold text-xl tracking-tight bg-gradient-to-r from-emerald-700 to-teal-600 bg-clip-text text-transparent">
               LangkahKecil
             </h1>
-            <p className="text-[11px] font-medium text-slate-400 -mt-0.5">Micro-Habit & Accountability</p>
+            <p className="text-[11px] font-medium text-slate-600 -mt-0.5">Micro-Habit & Accountability</p>
           </div>
         </div>
 
         {/* CTA Tambah Kebiasaan */}
         <button
           onClick={() => navigate('/habits/new')}
-          className="flex items-center justify-center space-x-2 w-full py-2.5 px-4 mb-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm shadow-md shadow-emerald-600/20 active:scale-[0.98] transition-all"
+          className="flex items-center justify-center space-x-2 w-full py-2.5 px-4 mb-6 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-sm shadow-md shadow-emerald-700/20 active:scale-[0.98] transition-all"
         >
           <PlusCircle className="w-4 h-4" />
           <span>Buat Kebiasaan</span>
@@ -85,7 +85,7 @@ export default function Layout({ children }) {
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
                 }`}
               >
-                <Icon className={`w-5 h-5 ${isActive ? 'text-emerald-600' : 'text-slate-400'}`} />
+                <Icon className={`w-5 h-5 ${isActive ? 'text-emerald-700' : 'text-slate-500'}`} />
                 <span>{item.label}</span>
               </NavLink>
             );
@@ -100,20 +100,21 @@ export default function Layout({ children }) {
                 onClick={() => navigate(`/u/${user.username}`)}
                 className="flex items-center space-x-2.5 overflow-hidden cursor-pointer flex-1 mr-2 hover:opacity-80 transition-opacity"
               >
-                <div className="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xs flex items-center justify-center shrink-0">
+                <div className="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">
                   {user.display_name?.charAt(0).toUpperCase() || 'U'}
                 </div>
                 <div className="truncate">
                   <p className="text-xs font-semibold text-slate-800 truncate leading-snug">
                     {user.display_name}
                   </p>
-                  <p className="text-[11px] text-slate-400 truncate">@{user.username}</p>
+                  <p className="text-[11px] text-slate-600 truncate">@{user.username}</p>
                 </div>
               </div>
               <button
                 onClick={handleLogout}
                 title="Keluar"
-                className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
+                aria-label="Keluar dari akun"
+                className="p-1.5 text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
               >
                 <LogOut className="w-4 h-4" />
               </button>
@@ -170,7 +171,7 @@ export default function Layout({ children }) {
               key={item.to}
               to={item.to}
               className={`flex flex-col items-center justify-center py-1 px-3 rounded-xl transition-all ${
-                isActive ? 'text-emerald-600 font-semibold' : 'text-slate-400 hover:text-slate-600'
+                isActive ? 'text-emerald-700 font-semibold' : 'text-slate-500 hover:text-slate-800'
               }`}
             >
               <Icon className="w-5 h-5 mb-0.5" />

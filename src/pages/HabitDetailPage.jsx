@@ -140,7 +140,7 @@ export default function HabitDetailPage() {
         <p className="text-rose-600 font-medium text-sm">{error || 'Kebiasaan tidak ditemukan'}</p>
         <button
           onClick={() => navigate('/habits')}
-          className="px-4 py-2 bg-emerald-600 text-white rounded-xl text-xs font-semibold"
+          className="px-4 py-2 bg-emerald-700 text-white rounded-xl text-xs font-semibold hover:bg-emerald-800"
         >
           Kembali ke Daftar Kebiasaan
         </button>
@@ -157,7 +157,8 @@ export default function HabitDetailPage() {
       <div className="flex items-center justify-between">
         <button
           onClick={() => navigate('/habits')}
-          className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+          aria-label="Kembali ke daftar kebiasaan"
+          className="p-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />
         </button>
@@ -186,32 +187,35 @@ export default function HabitDetailPage() {
         {isEditing ? (
           <form onSubmit={handleUpdate} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">Aksi Mikro</label>
+              <label htmlFor="edit-habit-title" className="block text-xs font-semibold text-slate-700 mb-1">Aksi Mikro</label>
               <input
+                id="edit-habit-title"
                 type="text"
                 required
                 value={editTitle}
                 onChange={(e) => setEditTitle(e.target.value)}
-                className="w-full text-sm p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full text-sm p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-slate-800"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">Anchor Cue</label>
+              <label htmlFor="edit-habit-anchor" className="block text-xs font-semibold text-slate-700 mb-1">Anchor Cue</label>
               <input
+                id="edit-habit-anchor"
                 type="text"
                 value={editAnchor}
                 onChange={(e) => setEditAnchor(e.target.value)}
                 placeholder="Setelah saya..."
-                className="w-full text-sm p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full text-sm p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-slate-800"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">Deskripsi</label>
+              <label htmlFor="edit-habit-desc" className="block text-xs font-semibold text-slate-700 mb-1">Deskripsi</label>
               <textarea
+                id="edit-habit-desc"
                 rows={2}
                 value={editDesc}
                 onChange={(e) => setEditDesc(e.target.value)}
-                className="w-full text-sm p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 resize-none"
+                className="w-full text-sm p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 resize-none text-slate-800"
               />
             </div>
             <div className="flex justify-end space-x-2 pt-2">
@@ -225,7 +229,7 @@ export default function HabitDetailPage() {
               <button
                 type="submit"
                 disabled={saving}
-                className="flex items-center space-x-1 px-4 py-2 bg-emerald-600 text-white rounded-xl text-xs font-semibold hover:bg-emerald-700"
+                className="flex items-center space-x-1 px-4 py-2 bg-emerald-700 text-white rounded-xl text-xs font-semibold hover:bg-emerald-800"
               >
                 <Save className="w-3.5 h-3.5" />
                 <span>{saving ? 'Menyimpan...' : 'Simpan Perubahan'}</span>
@@ -322,7 +326,7 @@ export default function HabitDetailPage() {
               <button
                 onClick={() => handleBackdateCheckin(yesterday.dateStr)}
                 disabled={submittingLog}
-                className="flex items-center space-x-1 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold shadow-xs"
+                className="flex items-center space-x-1 px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-semibold shadow-xs"
               >
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 <span>{submittingLog ? 'Menyimpan...' : 'Catat Kemarin'}</span>
