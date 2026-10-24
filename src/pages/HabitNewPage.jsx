@@ -66,7 +66,7 @@ export default function HabitNewPage() {
           type="button"
           onClick={() => navigate(-1)}
           aria-label="Kembali"
-          className="p-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors"
+          className="p-2 rounded-xl text-slate-600 hover:text-slate-800 hover:bg-slate-100 transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />
         </button>
@@ -80,7 +80,7 @@ export default function HabitNewPage() {
 
       {/* Educational Tip Box */}
       <div className="p-4 rounded-2xl bg-amber-50/80 border border-amber-200/80 flex items-start space-x-3 text-amber-900 text-xs">
-        <Lightbulb className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+        <Lightbulb className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
         <div className="space-y-1">
           <p className="font-bold">Tips Atomic Habits: Jadikan Sangat Mudah</p>
           <p className="text-amber-800 leading-relaxed">

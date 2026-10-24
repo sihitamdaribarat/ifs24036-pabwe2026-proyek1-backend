@@ -158,7 +158,7 @@ export default function HabitDetailPage() {
         <button
           onClick={() => navigate('/habits')}
           aria-label="Kembali ke daftar kebiasaan"
-          className="p-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors"
+          className="p-2 rounded-xl text-slate-600 hover:text-slate-800 hover:bg-slate-100 transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />
         </button>
@@ -247,13 +247,13 @@ export default function HabitDetailPage() {
             <div>
               <h1 className="text-xl font-bold text-slate-900">{habit.title}</h1>
               {habit.anchor_cue && (
-                <p className="text-xs text-slate-500 mt-1 flex items-center gap-1 font-medium">
+                <p className="text-xs text-slate-600 mt-1 flex items-center gap-1 font-medium">
                   <span>⚓ Pemicu:</span>
                   <span className="text-slate-700">{habit.anchor_cue}</span>
                 </p>
               )}
               {habit.description && (
-                <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
                   {habit.description}
                 </p>
               )}
@@ -289,10 +289,10 @@ export default function HabitDetailPage() {
       <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <Calendar className="w-4 h-4 text-slate-400" />
+            <Calendar className="w-4 h-4 text-slate-600" />
             <h2 className="text-sm font-bold text-slate-800">Riwayat 30 Hari Terakhir</h2>
           </div>
-          <span className="text-xs text-slate-400">{logs.length} kali selesai</span>
+          <span className="text-xs text-slate-600">{logs.length} kali selesai</span>
         </div>
 
         {/* Visual Dots */}
@@ -303,8 +303,8 @@ export default function HabitDetailPage() {
               title={`${d.dateStr}: ${d.isLogged ? 'Selesai' : 'Kosong'}`}
               className={`h-11 rounded-xl flex flex-col items-center justify-center border text-[10px] transition-transform hover:scale-105 ${
                 d.isLogged
-                  ? 'bg-emerald-500 text-white border-emerald-600 font-bold'
-                  : 'bg-slate-50 text-slate-400 border-slate-200'
+                  ? 'bg-emerald-700 text-white border-emerald-600 font-bold'
+                  : 'bg-slate-50 text-slate-600 border-slate-200'
               } ${d.isToday ? 'ring-2 ring-emerald-500 ring-offset-1' : ''}`}
             >
               <span>{d.dayNum}</span>
@@ -319,7 +319,7 @@ export default function HabitDetailPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-bold text-slate-800">Kemarin Belum Sempat Dicatat?</p>
-                <p className="text-[11px] text-slate-500">
+                <p className="text-[11px] text-slate-600">
                   LangkahKecil memperbolehkan back-date untuk kemarin ({yesterday.dateStr}).
                 </p>
               </div>
@@ -340,14 +340,14 @@ export default function HabitDetailPage() {
       <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-3">
         <h2 className="text-sm font-bold text-slate-800">Catatan Check-in</h2>
         {logs.length === 0 ? (
-          <p className="text-xs text-slate-400 py-4 text-center">Belum ada catatan log.</p>
+          <p className="text-xs text-slate-600 py-4 text-center">Belum ada catatan log.</p>
         ) : (
           <div className="divide-y divide-slate-100">
             {logs.map((log) => (
               <div key={log.id} className="py-2.5 flex items-center justify-between text-xs">
                 <div>
                   <span className="font-semibold text-slate-800">{log.log_date}</span>
-                  {log.note && <p className="text-slate-500 text-[11px] mt-0.5">{log.note}</p>}
+                  {log.note && <p className="text-slate-600 text-[11px] mt-0.5">{log.note}</p>}
                 </div>
                 <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold">
                   Selesai ✓

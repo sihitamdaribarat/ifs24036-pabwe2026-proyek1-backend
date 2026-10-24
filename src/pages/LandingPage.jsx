@@ -31,7 +31,7 @@ export default function LandingPage() {
           {user ? (
             <Link
               to="/today"
-              className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm shadow-md shadow-emerald-600/20 transition-all flex items-center gap-1.5"
+              className="px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-sm shadow-md shadow-emerald-600/20 transition-all flex items-center gap-1.5"
             >
               <span>Buka Dashboard</span>
               <ArrowRight className="w-4 h-4" />
@@ -46,7 +46,7 @@ export default function LandingPage() {
               </Link>
               <Link
                 to="/register"
-                className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm shadow-md shadow-emerald-600/20 transition-all flex items-center gap-1.5"
+                className="px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-sm shadow-md shadow-emerald-600/20 transition-all flex items-center gap-1.5"
               >
                 <span>Mulai Gratis</span>
                 <ArrowRight className="w-4 h-4" />
@@ -56,6 +56,7 @@ export default function LandingPage() {
         </div>
       </header>
 
+      <main className="flex-1 flex flex-col">
       {/* Hero Section */}
       <section className="flex-1 max-w-4xl mx-auto px-4 pt-12 pb-20 text-center flex flex-col items-center justify-center">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 text-emerald-800 text-xs font-semibold mb-6 border border-emerald-200/60 shadow-xs">
@@ -78,7 +79,7 @@ export default function LandingPage() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto mb-16">
           <button
             onClick={() => navigate(user ? '/today' : '/register')}
-            className="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base shadow-xl shadow-emerald-600/25 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-base shadow-xl shadow-emerald-600/25 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
           >
             <span>{user ? 'Lanjutkan Hari Ini' : 'Mulai Langkah Pertama'}</span>
             <ArrowRight className="w-4 h-4" />
@@ -95,7 +96,7 @@ export default function LandingPage() {
         <div className="w-full max-w-lg bg-white rounded-3xl p-5 shadow-2xl border border-slate-200/80 text-left">
           <div className="flex items-center justify-between pb-4 border-b border-slate-100">
             <div>
-              <p className="text-xs text-slate-400 font-medium">Hari Ini</p>
+              <p className="text-xs text-slate-600 font-medium">Hari Ini</p>
               <h2 className="text-base font-bold text-slate-800">Fokus Langkah Mikro</h2>
             </div>
             <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold">
@@ -110,14 +111,14 @@ export default function LandingPage() {
                 <span className="text-xl">📖</span>
                 <div>
                   <p className="text-sm font-semibold text-slate-800">Baca 1 Halaman Buku</p>
-                  <p className="text-[11px] text-slate-400">Setelah menyikat gigi malam</p>
+                  <p className="text-[11px] text-slate-600">Setelah menyikat gigi malam</p>
                 </div>
               </div>
               <div className="flex items-center space-x-2">
-                <span className="text-xs font-bold text-amber-600 flex items-center gap-0.5">
+                <span className="text-xs font-bold text-amber-700 flex items-center gap-0.5">
                   🔥 14 hari
                 </span>
-                <span className="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs">
+                <span className="w-6 h-6 rounded-full bg-emerald-700 text-white flex items-center justify-center text-xs">
                   ✓
                 </span>
               </div>
@@ -128,26 +129,26 @@ export default function LandingPage() {
                 <span className="text-xl">💪</span>
                 <div>
                   <p className="text-sm font-semibold text-slate-800">Push-up 3 Kali</p>
-                  <p className="text-[11px] text-slate-400">Setelah bangun tidur</p>
+                  <p className="text-[11px] text-slate-600">Setelah bangun tidur</p>
                 </div>
               </div>
               <div className="flex items-center space-x-2">
-                <span className="text-xs font-bold text-amber-600 flex items-center gap-0.5">
+                <span className="text-xs font-bold text-amber-700 flex items-center gap-0.5">
                   🔥 7 hari
                 </span>
-                <span className="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs">
+                <span className="w-6 h-6 rounded-full bg-emerald-700 text-white flex items-center justify-center text-xs">
                   ✓
                 </span>
               </div>
             </div>
           </div>
 
-          <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+          <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
             <span className="flex items-center gap-1 text-emerald-700 font-medium">
               <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
               <span>18 orang baru saja memberi Cheer</span>
             </span>
-            <span className="font-semibold text-slate-400">100% Bebas Iklan</span>
+            <span className="font-semibold text-slate-600">100% Bebas Iklan</span>
           </div>
         </div>
       </section>
@@ -198,8 +199,10 @@ export default function LandingPage() {
         </div>
       </section>
 
+      </main>
+
       {/* Footer */}
-      <footer className="mt-auto py-6 border-t border-slate-200 text-center text-xs text-slate-400">
+      <footer className="mt-auto py-6 border-t border-slate-200 text-center text-xs text-slate-600">
         <p>© 2026 LangkahKecil — Micro-Habit Tracker & Community Accountability</p>
       </footer>
     </div>

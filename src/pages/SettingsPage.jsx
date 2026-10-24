@@ -55,7 +55,7 @@ export default function SettingsPage() {
       {/* Header */}
       <div>
         <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Pengaturan Profil</h1>
-        <p className="text-xs text-slate-500 font-medium mt-0.5">
+        <p className="text-xs text-slate-600 font-medium mt-0.5">
           Kelola identitas dan preferensi zona waktu harianmu
         </p>
       </div>
@@ -78,9 +78,9 @@ export default function SettingsPage() {
         {/* Read-only account info */}
         <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-between text-xs">
           <div>
-            <p className="text-slate-400">Username & Email</p>
+            <p className="text-slate-600">Username & Email</p>
             <p className="font-bold text-slate-800 mt-0.5">@{user?.username}</p>
-            <p className="text-slate-500 text-[11px]">{user?.email}</p>
+            <p className="text-slate-600 text-[11px]">{user?.email}</p>
           </div>
           <span className="px-2.5 py-1 bg-slate-200 text-slate-600 rounded-lg text-[10px] font-bold">
             Tetap
@@ -125,7 +125,7 @@ export default function SettingsPage() {
         {/* Timezone */}
         <div>
           <label htmlFor="settings-timezone" className="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1">
-            <Globe className="w-3.5 h-3.5 text-slate-400" />
+            <Globe className="w-3.5 h-3.5 text-slate-600" />
             <span>Zona Waktu (Menentukan pergantian "Hari Ini")</span>
           </label>
           <select

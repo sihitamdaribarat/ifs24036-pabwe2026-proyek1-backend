@@ -149,7 +149,7 @@ export default function TodayPage() {
         <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
           {getGreeting()}, {user?.display_name || 'Kawan'} 👋
         </h1>
-        <p className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">
+        <p className="text-xs sm:text-sm text-slate-600 font-medium mt-0.5">
           {formatIndonesianDate(data.date)}
         </p>
       </div>
@@ -204,7 +204,7 @@ export default function TodayPage() {
       <div>
         <div className="flex items-center justify-between mb-3 px-1">
           <h2 className="text-base font-bold text-slate-800">Kebiasaan Hari Ini</h2>
-          <span className="text-xs text-slate-500 font-medium">
+          <span className="text-xs text-slate-600 font-medium">
             Ketuk untuk menyelesaikan
           </span>
         </div>
@@ -216,13 +216,13 @@ export default function TodayPage() {
             </div>
             <div>
               <h3 className="font-bold text-slate-800 text-base">Belum Ada Kebiasaan</h3>
-              <p className="text-xs text-slate-500 max-w-sm mx-auto mt-1 leading-relaxed">
+              <p className="text-xs text-slate-600 max-w-sm mx-auto mt-1 leading-relaxed">
                 Buat kebiasaan pertamamu. Mulai sekecil mungkin agar mudah konsisten setiap hari!
               </p>
             </div>
             <button
               onClick={() => navigate('/habits/new')}
-              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs shadow-md shadow-emerald-600/20 transition-all"
+              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-xs shadow-md shadow-emerald-600/20 transition-all"
             >
               <PlusCircle className="w-4 h-4" />
               <span>Buat Kebiasaan Pertama</span>
@@ -263,12 +263,12 @@ export default function TodayPage() {
                         {habit.title}
                       </h4>
                       {habit.anchor_cue ? (
-                        <p className="text-[11px] text-slate-400 truncate flex items-center gap-1 mt-0.5">
+                        <p className="text-[11px] text-slate-600 truncate flex items-center gap-1 mt-0.5">
                           <span>⚓</span>
                           <span>{habit.anchor_cue}</span>
                         </p>
                       ) : (
-                        <p className="text-[11px] text-slate-400">Ketuk untuk lihat detail</p>
+                        <p className="text-[11px] text-slate-600">Ketuk untuk lihat detail</p>
                       )}
                     </div>
                   </div>
@@ -288,8 +288,8 @@ export default function TodayPage() {
                       title={isDone ? 'Batalkan check-in' : 'Centang selesai'}
                       className={`w-11 h-11 rounded-2xl flex items-center justify-center transition-all active:scale-90 ${
                         isDone
-                          ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/30 ring-2 ring-emerald-400/50'
-                          : 'bg-slate-100 hover:bg-emerald-100 text-slate-400 hover:text-emerald-600 border border-slate-200'
+                          ? 'bg-emerald-700 text-white shadow-md shadow-emerald-600/30 ring-2 ring-emerald-400/50'
+                          : 'bg-slate-100 hover:bg-emerald-100 text-slate-600 hover:text-emerald-600 border border-slate-200'
                       }`}
                     >
                       {isChecking ? (

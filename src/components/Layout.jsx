@@ -85,7 +85,7 @@ export default function Layout({ children }) {
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
                 }`}
               >
-                <Icon className={`w-5 h-5 ${isActive ? 'text-emerald-700' : 'text-slate-500'}`} />
+                <Icon className={`w-5 h-5 ${isActive ? 'text-emerald-700' : 'text-slate-600'}`} />
                 <span>{item.label}</span>
               </NavLink>
             );
@@ -114,7 +114,7 @@ export default function Layout({ children }) {
                 onClick={handleLogout}
                 title="Keluar"
                 aria-label="Keluar dari akun"
-                className="p-1.5 text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
+                className="p-1.5 text-slate-600 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
               >
                 <LogOut className="w-4 h-4" />
               </button>
@@ -171,7 +171,7 @@ export default function Layout({ children }) {
               key={item.to}
               to={item.to}
               className={`flex flex-col items-center justify-center py-1 px-3 rounded-xl transition-all ${
-                isActive ? 'text-emerald-700 font-semibold' : 'text-slate-500 hover:text-slate-800'
+                isActive ? 'text-emerald-700 font-semibold' : 'text-slate-600 hover:text-slate-800'
               }`}
             >
               <Icon className="w-5 h-5 mb-0.5" />

@@ -239,7 +239,7 @@ export default function CommunityPage() {
       {/* Header */}
       <div>
         <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Komunitas LangkahKecil</h1>
-        <p className="text-xs text-slate-500 font-medium mt-0.5">
+        <p className="text-xs text-slate-600 font-medium mt-0.5">
           Saling menyemangati, merayakan aksi mikro, dan menjaga komitmen
         </p>
       </div>
@@ -281,7 +281,7 @@ export default function CommunityPage() {
                 className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all ${
                   postType === 'daily_win'
                     ? 'bg-white text-emerald-800 shadow-xs'
-                    : 'text-slate-500 hover:text-slate-800'
+                    : 'text-slate-600 hover:text-slate-800'
                 }`}
               >
                 🎉 Daily Win
@@ -292,7 +292,7 @@ export default function CommunityPage() {
                 className={`px-3 py-1 rounded-lg text-xs font-semibold transition-all ${
                   postType === 'reflection'
                     ? 'bg-white text-indigo-800 shadow-xs'
-                    : 'text-slate-500 hover:text-slate-800'
+                    : 'text-slate-600 hover:text-slate-800'
                 }`}
               >
                 💭 Refleksi
@@ -339,7 +339,7 @@ export default function CommunityPage() {
           className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
             filterType === 'all'
               ? 'bg-slate-800 text-white'
-              : 'text-slate-500 hover:text-slate-800 hover:bg-slate-100'
+              : 'text-slate-600 hover:text-slate-800 hover:bg-slate-100'
           }`}
         >
           Semua
@@ -349,7 +349,7 @@ export default function CommunityPage() {
           className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
             filterType === 'daily_win'
               ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
-              : 'text-slate-500 hover:text-slate-800 hover:bg-slate-100'
+              : 'text-slate-600 hover:text-slate-800 hover:bg-slate-100'
           }`}
         >
           🎉 Daily Wins
@@ -359,7 +359,7 @@ export default function CommunityPage() {
           className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
             filterType === 'reflection'
               ? 'bg-indigo-100 text-indigo-800 border border-indigo-300'
-              : 'text-slate-500 hover:text-slate-800 hover:bg-slate-100'
+              : 'text-slate-600 hover:text-slate-800 hover:bg-slate-100'
           }`}
         >
           💭 Refleksi
@@ -373,7 +373,7 @@ export default function CommunityPage() {
           <div className="h-32 bg-white rounded-3xl border border-slate-200"></div>
         </div>
       ) : posts.length === 0 ? (
-        <div className="bg-white rounded-3xl p-8 text-center border border-slate-200 text-slate-500 text-xs">
+        <div className="bg-white rounded-3xl p-8 text-center border border-slate-200 text-slate-600 text-xs">
           Belum ada postingan di kategori ini. Jadilah yang pertama berbagi!
         </div>
       ) : (
@@ -404,11 +404,11 @@ export default function CommunityPage() {
                         >
                           {post.author?.display_name}
                         </Link>
-                        <span className="text-[11px] text-slate-400">
+                        <span className="text-[11px] text-slate-600">
                           @{post.author?.username}
                         </span>
                       </div>
-                      <p className="text-[10px] text-slate-400">
+                      <p className="text-[10px] text-slate-600">
                         {formatRelativeTime(post.created_at)}
                         {post.is_edited && ' · diedit'}
                       </p>
@@ -430,7 +430,7 @@ export default function CommunityPage() {
                         onClick={() => handleDeletePost(post.id)}
                         title="Hapus postingan"
                         aria-label="Hapus postingan"
-                        className="p-1 text-slate-400 hover:text-rose-600 transition-colors"
+                        className="p-1 text-slate-600 hover:text-rose-600 transition-colors"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
@@ -444,7 +444,7 @@ export default function CommunityPage() {
                     <span>{post.habit.emoji}</span>
                     <span className="font-semibold text-slate-800">{post.habit.title}</span>
                     {post.streak_snapshot !== null && (
-                      <span className="text-amber-600 font-bold flex items-center gap-0.5">
+                      <span className="text-amber-700 font-bold flex items-center gap-0.5">
                         <Flame className="w-3 h-3 fill-amber-500 text-amber-500" />
                         <span>{post.streak_snapshot} hari</span>
                       </span>
@@ -498,7 +498,7 @@ export default function CommunityPage() {
                     </button>
 
                     {post.reaction_count > 0 && (
-                      <span className="text-[11px] font-bold text-slate-500 ml-1.5">
+                      <span className="text-[11px] font-bold text-slate-600 ml-1.5">
                         {post.reaction_count} reaksi
                       </span>
                     )}
@@ -508,7 +508,7 @@ export default function CommunityPage() {
                   <button
                     onClick={() => toggleComments(post.id)}
                     aria-label={`Lihat ${post.comment_count} komentar`}
-                    className="flex items-center space-x-1.5 text-slate-500 hover:text-slate-800 transition-colors"
+                    className="flex items-center space-x-1.5 text-slate-600 hover:text-slate-800 transition-colors"
                   >
                     <MessageCircle className="w-4 h-4" />
                     <span className="font-semibold">{post.comment_count}</span>
@@ -519,13 +519,13 @@ export default function CommunityPage() {
                 {commentsInfo.open && (
                   <div className="pt-3 border-t border-slate-100 space-y-3">
                     {commentsInfo.loading ? (
-                      <p className="text-xs text-slate-500">Memuat komentar...</p>
+                      <p className="text-xs text-slate-600">Memuat komentar...</p>
                     ) : (
                       <>
                         {/* List */}
                         <div className="space-y-2">
                           {commentsInfo.list.length === 0 ? (
-                            <p className="text-[11px] text-slate-500">Belum ada komentar. Beri semangat pertama!</p>
+                            <p className="text-[11px] text-slate-600">Belum ada komentar. Beri semangat pertama!</p>
                           ) : (
                             commentsInfo.list.map((c) => {
                               const canDelete = c.author?.id === user?.id || isAuthor;
@@ -542,7 +542,7 @@ export default function CommunityPage() {
                                       >
                                         {c.author?.display_name}
                                       </Link>
-                                      <span className="text-[10px] text-slate-500">
+                                      <span className="text-[10px] text-slate-600">
                                         {formatRelativeTime(c.created_at)}
                                       </span>
                                     </div>
@@ -553,7 +553,7 @@ export default function CommunityPage() {
                                       onClick={() => handleDeleteComment(post.id, c.id)}
                                       title="Hapus komentar"
                                       aria-label="Hapus komentar"
-                                      className="text-slate-400 hover:text-rose-600 p-1"
+                                      className="text-slate-600 hover:text-rose-600 p-1"
                                     >
                                       <Trash2 className="w-3 h-3" />
                                     </button>

@@ -45,7 +45,7 @@ export default function ProfilePage() {
         <p className="text-rose-600 font-semibold text-sm">{error || 'Pengguna tidak ditemukan'}</p>
         <button
           onClick={() => navigate(-1)}
-          className="px-4 py-2 bg-emerald-600 text-white rounded-xl text-xs font-semibold"
+          className="px-4 py-2 bg-emerald-700 text-white rounded-xl text-xs font-semibold"
         >
           Kembali
         </button>
@@ -61,7 +61,7 @@ export default function ProfilePage() {
       <div className="flex items-center space-x-2">
         <button
           onClick={() => navigate(-1)}
-          className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+          className="p-2 rounded-xl text-slate-600 hover:text-slate-700 hover:bg-slate-100 transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />
         </button>
@@ -78,18 +78,18 @@ export default function ProfilePage() {
             <h1 className="text-xl font-extrabold text-slate-900 leading-tight">
               {user.display_name}
             </h1>
-            <p className="text-xs text-slate-400 font-medium">@{user.username}</p>
+            <p className="text-xs text-slate-600 font-medium">@{user.username}</p>
             {user.bio ? (
               <p className="text-xs text-slate-600 mt-2 leading-relaxed">{user.bio}</p>
             ) : (
-              <p className="text-xs text-slate-400 italic mt-1">Belum menulis bio.</p>
+              <p className="text-xs text-slate-600 italic mt-1">Belum menulis bio.</p>
             )}
           </div>
         </div>
 
-        <div className="pt-3 border-t border-slate-100 flex items-center gap-4 text-xs text-slate-500">
+        <div className="pt-3 border-t border-slate-100 flex items-center gap-4 text-xs text-slate-600">
           <span className="flex items-center gap-1">
-            <Calendar className="w-3.5 h-3.5 text-slate-400" />
+            <Calendar className="w-3.5 h-3.5 text-slate-600" />
             <span>Bergabung {new Date(user.created_at).toLocaleDateString('id-ID', { month: 'long', year: 'numeric' })}</span>
           </span>
           <span className="flex items-center gap-1">
@@ -105,7 +105,7 @@ export default function ProfilePage() {
           Kebiasaan Aktif ({habits.length})
         </h2>
         {habits.length === 0 ? (
-          <div className="bg-white rounded-2xl p-6 text-center text-xs text-slate-400 border border-slate-200">
+          <div className="bg-white rounded-2xl p-6 text-center text-xs text-slate-600 border border-slate-200">
             Belum ada kebiasaan aktif yang ditampilkan.
           </div>
         ) : (
@@ -125,7 +125,7 @@ export default function ProfilePage() {
                   <div>
                     <h3 className="text-xs font-bold text-slate-800">{habit.title}</h3>
                     {habit.anchor_cue && (
-                      <p className="text-[10px] text-slate-400">⚓ {habit.anchor_cue}</p>
+                      <p className="text-[10px] text-slate-600">⚓ {habit.anchor_cue}</p>
                     )}
                   </div>
                 </div>
@@ -146,7 +146,7 @@ export default function ProfilePage() {
           Kemenangan & Refleksi Terbaru
         </h2>
         {userPosts.length === 0 ? (
-          <div className="bg-white rounded-2xl p-6 text-center text-xs text-slate-400 border border-slate-200">
+          <div className="bg-white rounded-2xl p-6 text-center text-xs text-slate-600 border border-slate-200">
             Belum ada postingan komunitas.
           </div>
         ) : (
@@ -166,7 +166,7 @@ export default function ProfilePage() {
                   >
                     {post.post_type === 'daily_win' ? '🎉 Daily Win' : '💭 Refleksi'}
                   </span>
-                  <span className="text-slate-400 text-[10px]">
+                  <span className="text-slate-600 text-[10px]">
                     {new Date(post.created_at).toLocaleDateString('id-ID', {
                       day: 'numeric',
                       month: 'short',
@@ -174,7 +174,7 @@ export default function ProfilePage() {
                   </span>
                 </div>
                 <p className="text-xs text-slate-800 leading-relaxed">{post.body}</p>
-                <div className="flex items-center space-x-3 text-[11px] text-slate-500 pt-1">
+                <div className="flex items-center space-x-3 text-[11px] text-slate-600 pt-1">
                   <span>🎉 {post.reaction_count} reaksi</span>
                   <span>💬 {post.comment_count} komentar</span>
                 </div>

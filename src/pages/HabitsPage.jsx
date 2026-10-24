@@ -49,7 +49,7 @@ export default function HabitsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Kebiasaan Saya</h1>
-          <p className="text-xs text-slate-500 font-medium mt-0.5">
+          <p className="text-xs text-slate-600 font-medium mt-0.5">
             Kelola dan pantau rangkaian konsistensimu
           </p>
         </div>
@@ -57,7 +57,7 @@ export default function HabitsPage() {
         {status === 'active' && (
           <button
             onClick={() => navigate('/habits/new')}
-            className="flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs shadow-md shadow-emerald-600/20 transition-all active:scale-95"
+            className="flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-xs shadow-md shadow-emerald-600/20 transition-all active:scale-95"
           >
             <PlusCircle className="w-4 h-4" />
             <span>Tambah</span>
@@ -79,7 +79,7 @@ export default function HabitsPage() {
             className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
               status === 'active'
                 ? 'bg-emerald-100 text-emerald-800 border border-emerald-200'
-                : 'text-slate-500 hover:text-slate-800 hover:bg-slate-100'
+                : 'text-slate-600 hover:text-slate-800 hover:bg-slate-100'
             }`}
           >
             Aktif
@@ -89,7 +89,7 @@ export default function HabitsPage() {
             className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
               status === 'archived'
                 ? 'bg-slate-200 text-slate-800'
-                : 'text-slate-500 hover:text-slate-800 hover:bg-slate-100'
+                : 'text-slate-600 hover:text-slate-800 hover:bg-slate-100'
             }`}
           >
             Diarsipkan
@@ -97,7 +97,7 @@ export default function HabitsPage() {
         </div>
 
         {status === 'active' && (
-          <div className="text-xs text-slate-400 font-medium">
+          <div className="text-xs text-slate-600 font-medium">
             <span className="font-bold text-slate-700">{habits.length}</span> / 10 batas aktif
           </div>
         )}
@@ -111,13 +111,13 @@ export default function HabitsPage() {
         </div>
       ) : habits.length === 0 ? (
         <div className="bg-white rounded-3xl p-8 text-center border border-slate-200/80 shadow-xs space-y-3">
-          <div className="w-12 h-12 bg-slate-100 text-slate-400 rounded-2xl flex items-center justify-center mx-auto text-xl">
+          <div className="w-12 h-12 bg-slate-100 text-slate-600 rounded-2xl flex items-center justify-center mx-auto text-xl">
             {status === 'active' ? '🌱' : '📁'}
           </div>
           <h3 className="font-bold text-slate-800 text-sm">
             {status === 'active' ? 'Belum Ada Kebiasaan Aktif' : 'Tidak Ada Kebiasaan Arsip'}
           </h3>
-          <p className="text-xs text-slate-500 max-w-xs mx-auto">
+          <p className="text-xs text-slate-600 max-w-xs mx-auto">
             {status === 'active'
               ? 'Mulai perjalananmu dengan membuat aksi mikro yang sangat ringan.'
               : 'Kebiasaan yang dinonaktifkan akan disimpan di sini.'}
@@ -125,7 +125,7 @@ export default function HabitsPage() {
           {status === 'active' && (
             <button
               onClick={() => navigate('/habits/new')}
-              className="mt-2 inline-flex items-center space-x-1.5 px-4 py-2 bg-emerald-600 text-white rounded-xl text-xs font-semibold shadow-xs hover:bg-emerald-700 transition-colors"
+              className="mt-2 inline-flex items-center space-x-1.5 px-4 py-2 bg-emerald-700 text-white rounded-xl text-xs font-semibold shadow-xs hover:bg-emerald-800 transition-colors"
             >
               <PlusCircle className="w-4 h-4" />
               <span>Buat Sekarang</span>
@@ -150,18 +150,18 @@ export default function HabitsPage() {
                 <div className="truncate">
                   <h3 className="text-sm font-bold text-slate-800 truncate">{habit.title}</h3>
                   {habit.anchor_cue && (
-                    <p className="text-[11px] text-slate-400 truncate flex items-center gap-1 mt-0.5">
+                    <p className="text-[11px] text-slate-600 truncate flex items-center gap-1 mt-0.5">
                       <span>⚓</span>
                       <span>{habit.anchor_cue}</span>
                     </p>
                   )}
-                  <div className="flex items-center gap-3 text-[11px] text-slate-500 mt-1">
-                    <span className="flex items-center gap-1 font-semibold text-amber-600">
+                  <div className="flex items-center gap-3 text-[11px] text-slate-600 mt-1">
+                    <span className="flex items-center gap-1 font-semibold text-amber-700">
                       <Flame className="w-3 h-3 fill-amber-500 text-amber-500" />
                       <span>{habit.streak?.current_streak || 0} hari aktif</span>
                     </span>
-                    <span className="flex items-center gap-1 text-slate-400">
-                      <Award className="w-3 h-3 text-slate-400" />
+                    <span className="flex items-center gap-1 text-slate-600">
+                      <Award className="w-3 h-3 text-slate-600" />
                       <span>Rekor: {habit.streak?.longest_streak || 0} hari</span>
                     </span>
                   </div>
