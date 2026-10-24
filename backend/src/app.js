@@ -23,9 +23,22 @@ app.use(helmet({
   crossOriginResourcePolicy: false,
 }));
 
-// CORS
+// CORS — allow local dev + Vercel deployment
+const allowedOrigins = [
+  config.corsOrigin,
+  'http://localhost:5173',
+  'http://127.0.0.1:5173',
+  'https://ifs24036-pabwe2026-proyek1.vercel.app',
+];
 app.use(cors({
-  origin: [config.corsOrigin, 'http://localhost:5173', 'http://127.0.0.1:5173'],
+  origin: (origin, cb) => {
+    // Allow same-origin requests (no Origin header) and allowed origins
+    if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
+      cb(null, true);
+    } else {
+      cb(null, false);
+    }
+  },
   credentials: true,
 }));
 
