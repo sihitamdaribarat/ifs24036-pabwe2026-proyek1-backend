@@ -138,7 +138,7 @@ export default function HabitDetailPage() {
     return (
       <div className="p-6 bg-white rounded-3xl border border-slate-200 text-center space-y-3">
         <p className="text-rose-600 font-medium text-sm">{error || 'Kebiasaan tidak ditemukan'}</p>
-        <button
+        <button type="button"
           onClick={() => navigate('/habits')}
           className="px-4 py-2 bg-emerald-700 text-white rounded-xl text-xs font-semibold hover:bg-emerald-800"
         >
@@ -155,7 +155,7 @@ export default function HabitDetailPage() {
     <div className="space-y-6">
       {/* Top Bar */}
       <div className="flex items-center justify-between">
-        <button
+        <button type="button"
           onClick={() => navigate('/habits')}
           aria-label="Kembali ke daftar kebiasaan"
           className="p-2 rounded-xl text-slate-600 hover:text-slate-800 hover:bg-slate-100 transition-colors"
@@ -163,7 +163,7 @@ export default function HabitDetailPage() {
           <ArrowLeft className="w-5 h-5" />
         </button>
         <div className="flex items-center space-x-2">
-          <button
+          <button type="button"
             onClick={() => setIsEditing(!isEditing)}
             className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-100 transition-colors"
           >
@@ -171,7 +171,7 @@ export default function HabitDetailPage() {
             <span>{isEditing ? 'Batal' : 'Edit'}</span>
           </button>
           {!habit.archived_at && (
-            <button
+            <button type="button"
               onClick={handleArchive}
               className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl border border-rose-200 text-xs font-semibold text-rose-600 hover:bg-rose-50 transition-colors"
             >
@@ -323,7 +323,7 @@ export default function HabitDetailPage() {
                   LangkahKecil memperbolehkan back-date untuk kemarin ({yesterday.dateStr}).
                 </p>
               </div>
-              <button
+              <button type="button"
                 onClick={() => handleBackdateCheckin(yesterday.dateStr)}
                 disabled={submittingLog}
                 className="flex items-center space-x-1 px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-semibold shadow-xs"

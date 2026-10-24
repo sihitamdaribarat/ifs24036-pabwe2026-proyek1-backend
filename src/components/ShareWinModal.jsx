@@ -58,7 +58,7 @@ export default function ShareWinModal({ isOpen, onClose, habit, streak, onPostCr
               <p className="text-xs text-emerald-100">Rayakan konsistensi bersama komunitas</p>
             </div>
           </div>
-          <button
+          <button type="button"
             onClick={onClose}
             className="p-1 rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors"
           >
@@ -85,10 +85,11 @@ export default function ShareWinModal({ isOpen, onClose, habit, streak, onPostCr
           )}
 
           <div>
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label htmlFor="share-win-body" className="block text-xs font-semibold text-slate-700 mb-1">
               Pesan untuk Komunitas
             </label>
             <textarea
+              id="share-win-body"
               rows={4}
               maxLength={500}
               value={body}
@@ -102,7 +103,7 @@ export default function ShareWinModal({ isOpen, onClose, habit, streak, onPostCr
           </div>
 
           <div className="flex items-center gap-2">
-            <label className="text-xs font-medium text-slate-600">Tipe:</label>
+            <span className="text-xs font-medium text-slate-600">Tipe:</span>
             <div className="flex gap-1.5">
               <button
                 type="button"

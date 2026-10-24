@@ -86,8 +86,7 @@ describe('HabitsPage', () => {
     expect(screen.getByText('3 hari aktif')).toBeInTheDocument();
     expect(screen.getByText('Rekor: 7 hari')).toBeInTheDocument();
 
-    fireEvent.click(screen.getByText('Minum 2L air'));
-    expect(mockNavigate).toHaveBeenCalledWith('/habits/1');
+    expect(screen.getByText('Minum 2L air').closest('a')).toHaveAttribute('href', '/habits/1');
   });
 
   it('switches to archived tab and renders archived habits', async () => {

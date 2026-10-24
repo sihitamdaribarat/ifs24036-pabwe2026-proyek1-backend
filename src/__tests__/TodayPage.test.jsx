@@ -168,7 +168,6 @@ describe('TodayPage', () => {
 
     expect(await screen.findByText('Baca 1 Lembar')).toBeInTheDocument();
 
-    fireEvent.click(screen.getByText('Baca 1 Lembar'));
-    expect(mockNavigate).toHaveBeenCalledWith('/habits/12');
+    expect(screen.getByText('Baca 1 Lembar').closest('a')).toHaveAttribute('href', '/habits/12');
   });
 });

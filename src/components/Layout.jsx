@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import {
   CalendarCheck,
   Flame,
@@ -62,7 +62,7 @@ export default function Layout({ children }) {
         </div>
 
         {/* CTA Tambah Kebiasaan */}
-        <button
+        <button type="button"
           onClick={() => navigate('/habits/new')}
           className="flex items-center justify-center space-x-2 w-full py-2.5 px-4 mb-6 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-sm shadow-md shadow-emerald-700/20 active:scale-[0.98] transition-all"
         >
@@ -96,9 +96,9 @@ export default function Layout({ children }) {
         {user && (
           <div className="pt-4 border-t border-slate-100">
             <div className="flex items-center justify-between p-2 rounded-xl bg-slate-50 border border-slate-100">
-              <div
-                onClick={() => navigate(`/u/${user.username}`)}
-                className="flex items-center space-x-2.5 overflow-hidden cursor-pointer flex-1 mr-2 hover:opacity-80 transition-opacity"
+              <Link
+                to={`/u/${user.username}`}
+                className="flex items-center space-x-2.5 overflow-hidden flex-1 mr-2 rounded-lg hover:opacity-80 transition-opacity"
               >
                 <div className="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0">
                   {user.display_name?.charAt(0).toUpperCase() || 'U'}
@@ -109,8 +109,8 @@ export default function Layout({ children }) {
                   </p>
                   <p className="text-[11px] text-slate-600 truncate">@{user.username}</p>
                 </div>
-              </div>
-              <button
+              </Link>
+              <button type="button"
                 onClick={handleLogout}
                 title="Keluar"
                 aria-label="Keluar dari akun"
@@ -137,7 +137,7 @@ export default function Layout({ children }) {
           </div>
 
           <div className="flex items-center space-x-2">
-            <button
+            <button type="button"
               onClick={() => navigate('/habits/new')}
               className="p-1.5 bg-emerald-50 text-emerald-700 rounded-lg text-xs font-semibold flex items-center gap-1"
             >
@@ -145,12 +145,13 @@ export default function Layout({ children }) {
               <span>Baru</span>
             </button>
             {user && (
-              <div
-                onClick={() => navigate(`/u/${user.username}`)}
-                className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xs flex items-center justify-center cursor-pointer"
+              <Link
+                to={`/u/${user.username}`}
+                aria-label="Profil saya"
+                className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xs flex items-center justify-center"
               >
                 {user.display_name?.charAt(0).toUpperCase()}
-              </div>
+              </Link>
             )}
           </div>
         </header>

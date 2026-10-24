@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import confetti from 'canvas-confetti';
 import {
   Check,
@@ -220,7 +220,7 @@ export default function TodayPage() {
                 Buat kebiasaan pertamamu. Mulai sekecil mungkin agar mudah konsisten setiap hari!
               </p>
             </div>
-            <button
+            <button type="button"
               onClick={() => navigate('/habits/new')}
               className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-xs shadow-md shadow-emerald-600/20 transition-all"
             >
@@ -244,9 +244,9 @@ export default function TodayPage() {
                   }`}
                 >
                   {/* Left Habit Info */}
-                  <div
-                    onClick={() => navigate(`/habits/${habit.id}`)}
-                    className="flex items-center space-x-3.5 flex-1 min-w-0 mr-3 cursor-pointer group"
+                  <Link
+                    to={`/habits/${habit.id}`}
+                    className="flex items-center space-x-3.5 flex-1 min-w-0 mr-3 group rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                   >
                     <div
                       className="w-11 h-11 rounded-2xl flex items-center justify-center text-xl shrink-0 transition-transform group-hover:scale-105"
@@ -271,7 +271,7 @@ export default function TodayPage() {
                         <p className="text-[11px] text-slate-600">Ketuk untuk lihat detail</p>
                       )}
                     </div>
-                  </div>
+                  </Link>
 
                   {/* Right Streak & Check Button */}
                   <div className="flex items-center space-x-3 shrink-0">
@@ -282,7 +282,7 @@ export default function TodayPage() {
                     </div>
 
                     {/* Check-in Button (Touch target >= 44x44px as required by PRD 6.4 & 7.4) */}
-                    <button
+                    <button type="button"
                       onClick={() => handleCheckIn(habit)}
                       disabled={isChecking}
                       title={isDone ? 'Batalkan check-in' : 'Centang selesai'}

@@ -100,7 +100,7 @@ export default function HabitNewPage() {
 
         {/* Emoji & Color Selection */}
         <div className="space-y-3">
-          <label className="block text-xs font-semibold text-slate-700">Pilih Ikon & Warna</label>
+          <p className="block text-xs font-semibold text-slate-700">Pilih Ikon & Warna</p>
           <div className="flex items-center space-x-4">
             <div
               className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shadow-inner shrink-0"

@@ -334,7 +334,7 @@ export default function CommunityPage() {
 
       {/* Filter Tabs */}
       <div className="flex space-x-2 border-b border-slate-200 pb-2">
-        <button
+        <button type="button"
           onClick={() => setFilterType('all')}
           className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
             filterType === 'all'
@@ -344,7 +344,7 @@ export default function CommunityPage() {
         >
           Semua
         </button>
-        <button
+        <button type="button"
           onClick={() => setFilterType('daily_win')}
           className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
             filterType === 'daily_win'
@@ -354,7 +354,7 @@ export default function CommunityPage() {
         >
           🎉 Daily Wins
         </button>
-        <button
+        <button type="button"
           onClick={() => setFilterType('reflection')}
           className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
             filterType === 'reflection'
@@ -426,7 +426,7 @@ export default function CommunityPage() {
                       {post.post_type === 'daily_win' ? '🎉 Daily Win' : '💭 Refleksi'}
                     </span>
                     {isAuthor && (
-                      <button
+                      <button type="button"
                         onClick={() => handleDeletePost(post.id)}
                         title="Hapus postingan"
                         aria-label="Hapus postingan"
@@ -461,7 +461,7 @@ export default function CommunityPage() {
                 <div className="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
                   {/* Reaction buttons */}
                   <div className="flex items-center space-x-1.5">
-                    <button
+                    <button type="button"
                       onClick={() => handleReaction(post.id, 'cheer')}
                       className={`flex items-center space-x-1 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
                         post.my_reaction === 'cheer'
@@ -473,7 +473,7 @@ export default function CommunityPage() {
                       <span>Cheer</span>
                     </button>
 
-                    <button
+                    <button type="button"
                       onClick={() => handleReaction(post.id, 'clap')}
                       className={`flex items-center space-x-1 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
                         post.my_reaction === 'clap'
@@ -485,7 +485,7 @@ export default function CommunityPage() {
                       <span>Clap</span>
                     </button>
 
-                    <button
+                    <button type="button"
                       onClick={() => handleReaction(post.id, 'fire')}
                       className={`flex items-center space-x-1 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
                         post.my_reaction === 'fire'
@@ -505,7 +505,7 @@ export default function CommunityPage() {
                   </div>
 
                   {/* Comment Toggle */}
-                  <button
+                  <button type="button"
                     onClick={() => toggleComments(post.id)}
                     aria-label={`Lihat ${post.comment_count} komentar`}
                     className="flex items-center space-x-1.5 text-slate-600 hover:text-slate-800 transition-colors"
@@ -549,7 +549,7 @@ export default function CommunityPage() {
                                     <p className="text-slate-700 mt-0.5">{c.body}</p>
                                   </div>
                                   {canDelete && (
-                                    <button
+                                    <button type="button"
                                       onClick={() => handleDeleteComment(post.id, c.id)}
                                       title="Hapus komentar"
                                       aria-label="Hapus komentar"
@@ -602,7 +602,7 @@ export default function CommunityPage() {
           {/* Load More Button */}
           {hasMore && (
             <div className="text-center pt-2">
-              <button
+              <button type="button"
                 onClick={() => fetchPosts(false, cursor)}
                 className="px-5 py-2.5 rounded-2xl bg-white border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors shadow-xs"
               >

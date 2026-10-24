@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Flame,
   PlusCircle,
@@ -55,7 +55,7 @@ export default function HabitsPage() {
         </div>
 
         {status === 'active' && (
-          <button
+          <button type="button"
             onClick={() => navigate('/habits/new')}
             className="flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-xs shadow-md shadow-emerald-600/20 transition-all active:scale-95"
           >
@@ -74,7 +74,7 @@ export default function HabitsPage() {
       {/* Filter Tabs & Limit Indicator */}
       <div className="flex items-center justify-between border-b border-slate-200 pb-2">
         <div className="flex space-x-2">
-          <button
+          <button type="button"
             onClick={() => setStatus('active')}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
               status === 'active'
@@ -84,7 +84,7 @@ export default function HabitsPage() {
           >
             Aktif
           </button>
-          <button
+          <button type="button"
             onClick={() => setStatus('archived')}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
               status === 'archived'
@@ -123,7 +123,7 @@ export default function HabitsPage() {
               : 'Kebiasaan yang dinonaktifkan akan disimpan di sini.'}
           </p>
           {status === 'active' && (
-            <button
+            <button type="button"
               onClick={() => navigate('/habits/new')}
               className="mt-2 inline-flex items-center space-x-1.5 px-4 py-2 bg-emerald-700 text-white rounded-xl text-xs font-semibold shadow-xs hover:bg-emerald-800 transition-colors"
             >
@@ -137,10 +137,12 @@ export default function HabitsPage() {
           {habits.map((habit) => (
             <div
               key={habit.id}
-              onClick={() => navigate(`/habits/${habit.id}`)}
-              className="bg-white rounded-2xl p-4 border border-slate-200/80 hover:border-emerald-300 hover:shadow-sm transition-all cursor-pointer flex items-center justify-between group"
+              className="bg-white rounded-2xl p-4 border border-slate-200/80 hover:border-emerald-300 hover:shadow-sm transition-all flex items-center justify-between group"
             >
-              <div className="flex items-center space-x-3.5 flex-1 min-w-0 mr-3">
+              <Link
+                to={`/habits/${habit.id}`}
+                className="flex items-center space-x-3.5 flex-1 min-w-0 mr-3 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+              >
                 <div
                   className="w-11 h-11 rounded-2xl flex items-center justify-center text-xl shrink-0 group-hover:scale-105 transition-transform"
                   style={{ backgroundColor: `${habit.color}18` }}
@@ -166,12 +168,12 @@ export default function HabitsPage() {
                     </span>
                   </div>
                 </div>
-              </div>
+              </Link>
 
               {/* Action buttons */}
               <div className="shrink-0 flex items-center space-x-2">
                 {status === 'archived' ? (
-                  <button
+                  <button type="button"
                     onClick={(e) => handleRestore(habit.id, e)}
                     className="flex items-center space-x-1 px-3 py-1.5 rounded-xl bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs font-semibold transition-colors"
                   >
@@ -179,7 +181,7 @@ export default function HabitsPage() {
                     <span>Pulihkan</span>
                   </button>
                 ) : (
-                  <ChevronRight className="w-5 h-5 text-slate-300 group-hover:text-emerald-600 transition-colors" />
+                  <ChevronRight aria-hidden="true" className="w-5 h-5 text-slate-300 group-hover:text-emerald-600 transition-colors" />
                 )}
               </div>
             </div>
