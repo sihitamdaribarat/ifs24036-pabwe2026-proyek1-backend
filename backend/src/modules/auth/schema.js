@@ -30,8 +30,12 @@ export const registerSchema = z.object({
 });
 
 export const loginSchema = z.object({
-  email: z.string().trim().min(1, 'Email wajib diisi'),
+  email: z.string().trim().optional(),
+  username: z.string().trim().optional(),
   password: z.string().min(1, 'Password wajib diisi'),
+}).refine((data) => data.email || data.username, {
+  message: 'Email atau username wajib diisi',
+  path: ['email'],
 });
 
 export const updateProfileSchema = z.object({

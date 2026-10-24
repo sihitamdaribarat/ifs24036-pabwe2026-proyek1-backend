@@ -58,12 +58,13 @@ export async function register(req, res) {
 }
 
 export async function login(req, res) {
-  const { email, password } = req.body;
+  const identifier = (req.body.email || req.body.username || '').trim();
+  const { password } = req.body;
 
   const user = db.prepare(`
     SELECT id, email, username, display_name, password_hash, bio, timezone, created_at
-    FROM users WHERE email = ?
-  `).get(email);
+    FROM users WHERE email = ? COLLATE NOCASE OR username = ? COLLATE NOCASE
+  `).get(identifier, identifier);
 
   if (!user) {
     return sendError(res, 'UNAUTHORIZED', 'Email atau password salah.', null, 401);

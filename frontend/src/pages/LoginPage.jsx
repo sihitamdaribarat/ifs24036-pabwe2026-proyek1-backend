@@ -57,11 +57,13 @@ export default function LoginPage() {
             )}
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
-                Email
+              <label htmlFor="username" className="block text-xs font-semibold text-slate-700 mb-1">
+                Email / Username
               </label>
               <input
-                type="email"
+                id="username"
+                name="username"
+                type="text"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -71,11 +73,13 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
+              <label htmlFor="password" className="block text-xs font-semibold text-slate-700 mb-1">
                 Password
               </label>
               <div className="relative">
                 <input
+                  id="password"
+                  name="password"
                   type={showPassword ? 'text' : 'password'}
                   required
                   value={password}
@@ -94,6 +98,7 @@ export default function LoginPage() {
             </div>
 
             <button
+              id="btn-submit"
               type="submit"
               disabled={loading}
               className="w-full mt-2 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white font-semibold text-sm shadow-md shadow-emerald-600/20 active:scale-[0.98] transition-all flex items-center justify-center space-x-2"

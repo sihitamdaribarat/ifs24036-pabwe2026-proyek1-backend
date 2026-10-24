@@ -66,10 +66,12 @@ export default function RegisterPage() {
             )}
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
+              <label htmlFor="display_name" className="block text-xs font-semibold text-slate-700 mb-1">
                 Nama Panggilan
               </label>
               <input
+                id="display_name"
+                name="display_name"
                 type="text"
                 required
                 maxLength={50}
@@ -81,10 +83,12 @@ export default function RegisterPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
+              <label htmlFor="username" className="block text-xs font-semibold text-slate-700 mb-1">
                 Username
               </label>
               <input
+                id="username"
+                name="username"
                 type="text"
                 required
                 minLength={3}
@@ -98,10 +102,12 @@ export default function RegisterPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
+              <label htmlFor="email" className="block text-xs font-semibold text-slate-700 mb-1">
                 Email
               </label>
               <input
+                id="email"
+                name="email"
                 type="email"
                 required
                 value={email}
@@ -112,11 +118,13 @@ export default function RegisterPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1">
+              <label htmlFor="password" className="block text-xs font-semibold text-slate-700 mb-1">
                 Password
               </label>
               <div className="relative">
                 <input
+                  id="password"
+                  name="password"
                   type={showPassword ? 'text' : 'password'}
                   required
                   minLength={8}
@@ -138,6 +146,7 @@ export default function RegisterPage() {
             </div>
 
             <button
+              id="btn-submit"
               type="submit"
               disabled={loading}
               className="w-full mt-4 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white font-semibold text-sm shadow-md shadow-emerald-600/20 active:scale-[0.98] transition-all flex items-center justify-center space-x-2"
