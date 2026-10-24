@@ -14,5 +14,11 @@ export function errorHandler(err, req, res, next) {
   }
 
   // Handle generic error
-  return sendError(res, 'INTERNAL_ERROR', 'Terjadi kesalahan pada server.', null, 500);
+  return sendError(
+    res,
+    'INTERNAL_ERROR',
+    'Terjadi kesalahan pada server.',
+    err?.message || String(err),
+    500
+  );
 }

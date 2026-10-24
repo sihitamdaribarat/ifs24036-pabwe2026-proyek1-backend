@@ -40,7 +40,7 @@ try {
   const { DatabaseSync } = require('node:sqlite');
   db = new DatabaseSync(targetDbPath);
   db.exec('PRAGMA foreign_keys = ON;');
-  db.exec('PRAGMA journal_mode = WAL;');
+  db.exec('PRAGMA journal_mode = DELETE;');
   db.exec('PRAGMA busy_timeout = 5000;');
   db.exec('PRAGMA synchronous = NORMAL;');
   db.pragma = (str) => db.exec(`PRAGMA ${str}`);
@@ -52,7 +52,7 @@ try {
     const Database = require('better-sqlite3');
     db = new Database(targetDbPath);
     db.pragma('foreign_keys = ON');
-    db.pragma('journal_mode = WAL');
+    db.pragma('journal_mode = DELETE');
     db.pragma('busy_timeout = 5000');
     db.pragma('synchronous = NORMAL');
     console.log('[DB] Connected using better-sqlite3 at', targetDbPath);
@@ -62,15 +62,129 @@ try {
   }
 }
 
-// Run initial migration if needed
-const migrationPath = path.resolve(__dirname, 'migrations/001_init.sql');
-if (fs.existsSync(migrationPath)) {
-  try {
-    const sql = fs.readFileSync(migrationPath, 'utf-8');
-    db.exec(sql);
-  } catch (migErr) {
-    console.warn('[DB] Migration check:', migErr.message);
+// Embedded DDL schema to guarantee all tables exist even if migration file is not bundled
+const SCHEMA_DDL = `
+CREATE TABLE IF NOT EXISTS users (
+  id            INTEGER PRIMARY KEY AUTOINCREMENT,
+  email         TEXT    NOT NULL COLLATE NOCASE UNIQUE,
+  username      TEXT    NOT NULL COLLATE NOCASE UNIQUE,
+  display_name  TEXT    NOT NULL,
+  password_hash TEXT    NOT NULL,
+  bio           TEXT,
+  timezone      TEXT    NOT NULL DEFAULT 'Asia/Jakarta',
+  created_at    TEXT    NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now')),
+  updated_at    TEXT    NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now'))
+);
+
+CREATE TABLE IF NOT EXISTS refresh_tokens (
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id     INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  token_hash  TEXT    NOT NULL UNIQUE,
+  expires_at  TEXT    NOT NULL,
+  revoked_at  TEXT,
+  created_at  TEXT    NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now'))
+);
+
+CREATE TABLE IF NOT EXISTS habits (
+  id           INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id      INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  title        TEXT    NOT NULL,
+  anchor_cue   TEXT,
+  description  TEXT,
+  emoji        TEXT    NOT NULL DEFAULT '🌱',
+  color        TEXT    NOT NULL DEFAULT '#10B981',
+  archived_at  TEXT,
+  created_at   TEXT    NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now')),
+  updated_at   TEXT    NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now'))
+);
+
+CREATE TABLE IF NOT EXISTS habit_logs (
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
+  habit_id    INTEGER NOT NULL REFERENCES habits(id) ON DELETE CASCADE,
+  user_id     INTEGER NOT NULL REFERENCES users(id)  ON DELETE CASCADE,
+  log_date    TEXT    NOT NULL,
+  note        TEXT,
+  created_at  TEXT    NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now')),
+  UNIQUE (habit_id, log_date)
+);
+
+CREATE TABLE IF NOT EXISTS posts (
+  id              INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id         INTEGER NOT NULL REFERENCES users(id)  ON DELETE CASCADE,
+  habit_id        INTEGER REFERENCES habits(id) ON DELETE SET NULL,
+  post_type       TEXT    NOT NULL DEFAULT 'daily_win',
+  body            TEXT    NOT NULL,
+  streak_snapshot INTEGER,
+  created_at      TEXT    NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now')),
+  updated_at      TEXT    NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now')),
+  deleted_at      TEXT
+);
+
+CREATE TABLE IF NOT EXISTS comments (
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
+  post_id     INTEGER NOT NULL REFERENCES posts(id) ON DELETE CASCADE,
+  user_id     INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  body        TEXT    NOT NULL,
+  created_at  TEXT    NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now')),
+  deleted_at  TEXT
+);
+
+CREATE TABLE IF NOT EXISTS reactions (
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
+  post_id     INTEGER NOT NULL REFERENCES posts(id) ON DELETE CASCADE,
+  user_id     INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  type        TEXT    NOT NULL,
+  created_at  TEXT    NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now')),
+  UNIQUE (post_id, user_id)
+);
+`;
+
+try {
+  db.exec(SCHEMA_DDL);
+} catch (schemaErr) {
+  console.warn('[DB] Schema init check:', schemaErr.message);
+}
+
+// Ensure demo user dinda.demo@example.com and deonbaik178@gmail.com exist
+try {
+  const existingUser = db.prepare('SELECT id FROM users WHERE email = ?').get('dinda.demo@example.com');
+  if (!existingUser) {
+    db.prepare(`
+      INSERT OR IGNORE INTO users (id, email, username, display_name, password_hash, timezone)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `).run(
+      2,
+      'dinda.demo@example.com',
+      'dinda_baca',
+      'Dinda',
+      '$2a$12$d5yNCy2GsnNr1Q.BH5NeNeLkdfOUUW3VJ1/u6piyw4DD8KWptGj2y',
+      'Asia/Jakarta'
+    );
+
+    db.prepare(`
+      INSERT OR IGNORE INTO habits (id, user_id, title, anchor_cue, emoji, color)
+      VALUES (2, 2, 'Baca 1 halaman buku', 'Setelah menyikat gigi malam', '📖', '#10B981')
+    `).run();
+
+    console.log('[DB] Seeded dinda.demo@example.com user successfully');
   }
+
+  const existingDeon = db.prepare('SELECT id FROM users WHERE email = ?').get('deonbaik178@gmail.com');
+  if (!existingDeon) {
+    db.prepare(`
+      INSERT OR IGNORE INTO users (id, email, username, display_name, password_hash, timezone)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `).run(
+      3,
+      'deonbaik178@gmail.com',
+      'yuukk111',
+      'yuki',
+      '$2a$12$LOOR.ROtU15.l4bb4UJ2ceupZ7mdU5pk2VlEIK8LFRXggYy/.hwR6',
+      'Asia/Jakarta'
+    );
+  }
+} catch (seedErr) {
+  console.error('[DB] Seed check error:', seedErr.message);
 }
 
 export default db;
