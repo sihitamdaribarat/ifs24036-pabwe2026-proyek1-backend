@@ -59,14 +59,16 @@ describe('HabitNewPage', () => {
     );
 
     // Click an emoji button
-    const bookEmoji = screen.getByRole('button', { name: '📖' });
+    const bookEmoji = screen.getByRole('button', { name: 'Pilih ikon 📖' });
+    expect(bookEmoji).toHaveAttribute('aria-pressed', 'false');
     fireEvent.click(bookEmoji);
+    expect(bookEmoji).toHaveAttribute('aria-pressed', 'true');
 
-    // Click color buttons
-    const buttons = screen.getAllByRole('button');
-    // There are color buttons
-    const colorBtn = buttons.find((b) => b.getAttribute('style')?.includes('#6366F1'));
-    if (colorBtn) fireEvent.click(colorBtn);
+    // Click a color button
+    const colorBtn = screen.getByRole('button', { name: 'Pilih warna #6366F1' });
+    expect(colorBtn).toHaveAttribute('aria-pressed', 'false');
+    fireEvent.click(colorBtn);
+    expect(colorBtn).toHaveAttribute('aria-pressed', 'true');
   });
 
   it('creates habit and navigates to /today on success', async () => {

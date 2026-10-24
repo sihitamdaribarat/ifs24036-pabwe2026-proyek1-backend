@@ -116,6 +116,7 @@ export default function HabitNewPage() {
                   key={c}
                   type="button"
                   aria-label={`Pilih warna ${c}`}
+                  aria-pressed={color === c}
                   onClick={() => setColor(c)}
                   className={`w-7 h-7 rounded-full transition-transform ${
                     color === c ? 'scale-110 ring-2 ring-offset-2 ring-slate-400' : 'hover:scale-105'
@@ -133,6 +134,7 @@ export default function HabitNewPage() {
                 key={e}
                 type="button"
                 aria-label={`Pilih ikon ${e}`}
+                aria-pressed={emoji === e}
                 onClick={() => setEmoji(e)}
                 className={`w-9 h-9 rounded-xl text-lg flex items-center justify-center transition-all ${
                   emoji === e ? 'bg-slate-200 scale-105 shadow-xs' : 'hover:bg-slate-100'

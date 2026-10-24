@@ -8,8 +8,9 @@ export function validate(schema, source = 'body') {
       req[source] = parsed;
       next();
     } catch (err) {
-      if (err.errors) {
-        const details = err.errors.map((e) => ({
+      const issues = err.issues || err.errors;
+      if (issues) {
+        const details = issues.map((e) => ({
           field: e.path.join('.'),
           message: e.message,
         }));

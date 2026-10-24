@@ -18,9 +18,9 @@ const SettingsPage = lazy(() => import('./pages/SettingsPage.jsx'));
 
 function PageSpinner() {
   return (
-    <div className="flex items-center justify-center py-16" role="status" aria-label="Memuat halaman">
+    <output className="flex items-center justify-center py-16" aria-label="Memuat halaman">
       <div className="w-8 h-8 border-3 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
-    </div>
+    </output>
   );
 }
 

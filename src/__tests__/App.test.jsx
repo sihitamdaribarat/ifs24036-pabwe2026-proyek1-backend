@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
@@ -90,6 +90,20 @@ describe('App & Route Guards', () => {
       );
       expect(screen.getByTestId('layout')).toBeInTheDocument();
       expect(screen.getByText('Secret Content')).toBeInTheDocument();
+    });
+
+    it('shows a page spinner while a lazy page is loading', async () => {
+      mockAuthState = { user: { id: 1, email: 'test@example.com' }, loading: false };
+      const LazyPage = lazy(() => Promise.resolve({ default: () => <div>Lazy Content</div> }));
+      render(
+        <MemoryRouter>
+          <ProtectedRoute>
+            <LazyPage />
+          </ProtectedRoute>
+        </MemoryRouter>
+      );
+      expect(screen.getByLabelText('Memuat halaman')).toBeInTheDocument();
+      expect(await screen.findByText('Lazy Content')).toBeInTheDocument();
     });
   });
 
