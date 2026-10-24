@@ -6,12 +6,20 @@
   "framework": "vite",
   "functions": {
     "api/index.js": {
-      "includeFiles": "backend/**"
+      "includeFiles": [
+        "backend/**",
+        "database.sqlite",
+        "node_modules/better-sqlite3/**"
+      ]
     }
   },
   "rewrites": [
     {
-      "source": "/api/:path(.*)",
+      "source": "/api",
+      "destination": "/api"
+    },
+    {
+      "source": "/api/(.*)",
       "destination": "/api"
     },
     {

@@ -61,7 +61,20 @@ export async function request(path, options = {}) {
     return { success: true };
   }
 
-  const data = await response.json();
+  let data;
+  const rawText = await response.text();
+  try {
+    data = rawText ? JSON.parse(rawText) : {};
+  } catch {
+    const error = new Error(
+      response.status >= 500
+        ? 'Server sedang tidak dapat dihubungi. Silakan coba beberapa saat lagi.'
+        : `Terjadi kesalahan respons server (${response.status})`
+    );
+    error.code = 'RESPONSE_PARSE_ERROR';
+    error.status = response.status;
+    throw error;
+  }
 
   if (!response.ok) {
     const error = new Error(data.error?.message || 'Terjadi kesalahan');

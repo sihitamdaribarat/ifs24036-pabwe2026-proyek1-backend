@@ -1,7 +1,34 @@
 // Vercel Serverless Function entry point
-// Wraps the Express app for Vercel's serverless runtime
+// Wraps Express app for Vercel's serverless runtime
 
-import app from '../backend/src/app.js';
-import '../backend/src/db/connection.js'; // Ensure database connection & tables initialized
+let appPromise = null;
 
-export default app;
+async function getApp() {
+  if (!appPromise) {
+    appPromise = (async () => {
+      const { default: app } = await import('../backend/src/app.js');
+      return app;
+    })();
+  }
+  return appPromise;
+}
+
+export default async function handler(req, res) {
+  try {
+    const app = await getApp();
+    return app(req, res);
+  } catch (error) {
+    console.error('Unhandled Vercel serverless error:', error);
+    res.statusCode = 500;
+    res.setHeader('Content-Type', 'application/json');
+    return res.end(
+      JSON.stringify({
+        success: false,
+        error: {
+          code: 'SERVERLESS_ERROR',
+          message: error.message || 'Serverless invocation error',
+        },
+      })
+    );
+  }
+}
