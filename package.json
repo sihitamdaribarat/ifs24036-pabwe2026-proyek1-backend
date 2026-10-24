@@ -3,17 +3,21 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "main": "server.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "test": "vitest run --coverage"
+    "test": "vitest run --coverage",
+    "start": "node server.js"
   },
   "engines": {
     "node": "22.x"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-react": "^6.1.2",
     "bcryptjs": "^2.4.3",
     "canvas-confetti": "^1.9.4",
     "cookie-parser": "^1.4.7",
@@ -26,20 +30,18 @@
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "react-router-dom": "^7.18.4",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.3.4",
     "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.3.3",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
-    "@vitejs/plugin-react": "^6.1.2",
     "@vitest/coverage-v8": "^3.2.1",
     "jsdom": "^26.1.0",
     "oxlint": "^1.88.0",
-    "tailwindcss": "^4.3.3",
-    "vite": "^8.3.4",
     "vitest": "^3.2.1"
   },
   "overrides": {

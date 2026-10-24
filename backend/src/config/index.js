@@ -5,8 +5,10 @@ import dotenv from 'dotenv';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Load .env from backend root (for local dev)
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+// Load .env: project root first (written by the deploy platform), then backend/.env
+// as a local-dev fallback. dotenv never overrides values that are already set.
+dotenv.config({ path: path.resolve(__dirname, '../../../.env'), quiet: true });
+dotenv.config({ path: path.resolve(__dirname, '../../.env'), quiet: true });
 
 // On Vercel, filesystem is read-only except /tmp
 const resolvedDbPath = process.env.VERCEL
@@ -16,7 +18,7 @@ const resolvedDbPath = process.env.VERCEL
       : path.resolve(__dirname, '../../database.sqlite'));
 
 export const config = {
-  port: parseInt(process.env.PORT || '4000', 10),
+  port: parseInt(process.env.PORT || process.env.APP_PORT || '4000', 10),
   jwtSecret: process.env.JWT_SECRET || 'langkahkecil-super-secret-jwt-key-change-in-production-min-32-chars!',
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || '15m',
   refreshTokenDays: parseInt(process.env.REFRESH_TOKEN_EXPIRES_DAYS || '7', 10),

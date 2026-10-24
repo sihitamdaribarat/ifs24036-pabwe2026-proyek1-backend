@@ -46,19 +46,35 @@ try {
   db.pragma = (str) => db.exec(`PRAGMA ${str}`);
   console.log('[DB] Connected using node:sqlite at', targetDbPath);
 } catch (nodeErr) {
-  console.warn('[DB] node:sqlite unavailable, attempting better-sqlite3:', nodeErr.message);
-  // Attempt 2: better-sqlite3
+  console.warn('[DB] node:sqlite unavailable, attempting fallback driver:', nodeErr.message);
   try {
-    const Database = require('better-sqlite3');
-    db = new Database(targetDbPath);
-    db.pragma('foreign_keys = ON');
-    db.pragma('journal_mode = DELETE');
-    db.pragma('busy_timeout = 5000');
-    db.pragma('synchronous = NORMAL');
-    console.log('[DB] Connected using better-sqlite3 at', targetDbPath);
-  } catch (betterErr) {
-    console.error('[DB] All SQLite engines failed:', betterErr.message);
-    throw new Error(`Database connection failed: node:sqlite (${nodeErr.message}) | better-sqlite3 (${betterErr.message})`);
+    if (process.versions.bun) {
+      // Attempt 2: built-in bun:sqlite when running under Bun
+      const { Database } = require('bun:sqlite');
+      db = new Database(targetDbPath, { create: true });
+      db.exec('PRAGMA foreign_keys = ON;');
+      db.exec('PRAGMA journal_mode = DELETE;');
+      db.exec('PRAGMA busy_timeout = 5000;');
+      db.exec('PRAGMA synchronous = NORMAL;');
+      db.pragma = (str) => db.exec(`PRAGMA ${str}`);
+      console.log('[DB] Connected using bun:sqlite at', targetDbPath);
+    } else {
+      // Attempt 3: better-sqlite3 (only if installed separately)
+      const Database = require('better-sqlite3');
+      db = new Database(targetDbPath);
+      db.pragma('foreign_keys = ON');
+      db.pragma('journal_mode = DELETE');
+      db.pragma('busy_timeout = 5000');
+      db.pragma('synchronous = NORMAL');
+      console.log('[DB] Connected using better-sqlite3 at', targetDbPath);
+    }
+  } catch (fallbackErr) {
+    console.error('[DB] All SQLite engines failed:', fallbackErr.message);
+    throw new Error(
+      `Database connection failed (runtime ${process.versions.bun ? `bun ${process.versions.bun}` : `node ${process.version}`}): ` +
+      `node:sqlite (${nodeErr.message}) | fallback (${fallbackErr.message}). ` +
+      'Gunakan Node.js >= 22.13 atau Bun.'
+    );
   }
 }
 

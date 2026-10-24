@@ -14,9 +14,16 @@ import { sendError } from './utils/response.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const distPath = path.resolve(__dirname, '../../frontend/dist');
+// Frontend build: root dist/ (vite build from root src/), legacy frontend/dist as fallback
+const distPath = [
+  path.resolve(__dirname, '../../dist'),
+  path.resolve(__dirname, '../../frontend/dist'),
+].find((p) => fs.existsSync(path.join(p, 'index.html')));
 
 const app = express();
+
+// Running behind nginx on the same host: trust X-Forwarded-* from loopback only
+app.set('trust proxy', 'loopback');
 
 // Security headers
 app.use(helmet({
@@ -77,7 +84,7 @@ app.use('/api', apiV1);
 app.use(authRoutes);
 
 // Serve frontend static files if available
-if (fs.existsSync(distPath)) {
+if (distPath) {
   app.use(express.static(distPath));
   app.get('*', (req, res, next) => {
     if (req.path.startsWith('/api') || req.path === '/health') {
